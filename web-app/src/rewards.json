@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Welcome to Valor Combat Academy",
+        "icon": "lion",
+        "image": "Combat Academy Button 1",
+        "level": 1,
+        "criteria": 1,
+        "reward": "no nft reward",
+        "claimed": false,
+        "rid": 0,
+        "type": "no nft reward"
+    }
+]

@@ -1,27 +1,19 @@
 import { useWeb3Context } from '../flow/web3';
-import { useRouter } from 'next/router';
 import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import moment from 'moment';
 import Qrcodes from "../check-code.json";
+import Rewards from "../rewards.json";
+import { UserObject, InitValue, Reward } from "../constants/models";
 
-interface UserObject {
-  checkins: [];
-  address: string;
-  created: string
-}
-const initValue : UserObject = {
-  checkins: [],
-  address: '',
-  created: ''
-}
+
  const Checkin = () => {
-  const router = useRouter();
   const { connect, user, executeScript, logout } = useWeb3Context();
   const [dupeCheckin, setdupeCheckin] = useState(false);
   const [successCheckIn, setsuccessCheckIn] = useState(false);
-  const [currentSelectedUser, setcurrentSelectedUser] = useState(initValue);
+  const [currentSelectedUser, setcurrentSelectedUser] = useState<UserObject>(InitValue);
+  const [levelInfo, setLevelInfo] = useState({});
 
   useEffect(() => {
     if (!user.loggedIn) return 
@@ -35,7 +27,7 @@ const initValue : UserObject = {
     };
 
     handleLogIn();
-  }, [user, executeScript, router]);
+  }, [user, executeScript]);
 
  
   const handleCheckin = () => {
@@ -65,9 +57,10 @@ const initValue : UserObject = {
         };
       });
       if(valueNeeded === qrparam){ 
-        setsuccessCheckIn(true);
-        updateUser();
         // add additional handling for successful checkin
+        setsuccessCheckIn(true);
+        // handle rewards
+        checkRewardStatus();
       } else {
         // add handling here for QR being incorrect
       }
@@ -76,6 +69,44 @@ const initValue : UserObject = {
     }
     
   }
+
+  const checkRewardStatus = async () => {
+    const prevEarnedRewards : Reward[] = currentSelectedUser.rewards !== undefined ? currentSelectedUser.rewards : [];
+    let currentRewards : Reward[] = [];   
+    let currentLevel = 0;
+
+    if (currentSelectedUser.rewards !== undefined) {
+      // loop through each reward
+      Rewards.forEach((item:any) => {
+        // if 'checkins.length' >= the reward -- push reward
+        if(currentSelectedUser.checkins.length >= item.criteria) {
+          // loop through prevSaved rewards
+          prevEarnedRewards.forEach((alreadyAwarded) => {
+             // see if this item exists..  
+            if(alreadyAwarded.name === item.name) {
+              // it does.. assign the correct
+              item.claimed = alreadyAwarded.claimed;
+            }
+          })
+          currentRewards.push(item);         
+        }
+        if(currentSelectedUser.checkins.length === item.criteria) {
+          setLevelInfo(item)
+          // handle level up logic congrats
+        }
+      });
+      
+      currentLevel = currentRewards.length;
+      updateUser(currentRewards, currentLevel);
+    } else {
+      // the dont have metadata -- assuming its their first visit
+      const currentLevel = 1;
+      const defaultlevel: any = Rewards[0];
+      currentRewards.push(defaultlevel); 
+      updateUser(currentRewards, currentLevel);
+    }   
+    
+  };
 
   const addUser = async () => {
     setDoc(doc(db, "members", user.addr), {
@@ -87,17 +118,20 @@ const initValue : UserObject = {
     });
   }
 
-  const updateUser = async () => {
+  const updateUser = async (rewards?: Reward[], level?: number) => {
     let tempChecks : string[];
     currentSelectedUser.checkins !== undefined ? tempChecks = currentSelectedUser.checkins : tempChecks = [];
     const nowTime = moment().format();
     tempChecks.push(nowTime);
     updateDoc(doc(db, "members", user.addr), {
+      rewards: rewards,
+      level: level,
       checkins: tempChecks
     })
     .then((result) => {
       console.log('added checkin')
     });
+    
   }
 
   const getUser = async () => {
@@ -109,7 +143,9 @@ const initValue : UserObject = {
       const formedUser :  UserObject = {
         address: tempUserData.address,
         created: tempUserData.created,
-        checkins: tempUserData.checkins
+        checkins: tempUserData.checkins,
+        totalPoints: tempUserData.checkins.length,
+        rewards: tempUserData.rewards
       }
       setcurrentSelectedUser(formedUser);
     } else {
