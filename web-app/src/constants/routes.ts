@@ -1,9 +1,10 @@
 const API_ROOT =
-  process.env.NEXT_PUBLIC_API_ROOT || 'hawktoaddlink';
+  process.env.NEXT_PUBLIC_API_ROOT || '';
 
 const ROUTES = {
   // Frontend routes
   HOME: '/',
+  CHECKIN: '/checkin',
   SCAN: '/scan',
 
   // API routes
