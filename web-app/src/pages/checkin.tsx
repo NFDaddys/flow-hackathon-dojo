@@ -1,41 +1,80 @@
-// import { Button } from 'components/';
-import ROUTES from '../constants/routes';
 import { useWeb3Context } from '../flow/web3';
-// import { ActionPanel, NavPanel, PageContainer, PageContent } from 'layout';
 import { useRouter } from 'next/router';
-import { collection, getDocs, addDoc, setDoc, getDoc, doc, updateDoc, where, startAfter, limit, orderBy, query } from "firebase/firestore";
+import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
+import moment from 'moment';
+import Qrcodes from "../check-code.json";
 
-const Checkin = () => {
+interface UserObject {
+  checkins: [];
+  address: string;
+  created: string
+}
+const initValue : UserObject = {
+  checkins: [],
+  address: '',
+  created: ''
+}
+ const Checkin = () => {
   const router = useRouter();
   const { connect, user, executeScript, logout } = useWeb3Context();
+  const [dupeCheckin, setdupeCheckin] = useState(false);
   const [successCheckIn, setsuccessCheckIn] = useState(false);
+  const [currentSelectedUser, setcurrentSelectedUser] = useState(initValue);
 
   useEffect(() => {
-    if (!user.loggedIn) return
+    if (!user.loggedIn) return 
 
     const handleLogIn = async () => {
       try {
-        console.log('user ', user);
-        getUser();
-        // handle new users
-        // check to see if they are a current user
-        // if so handle and display
-        // else create a user and start cooking
+        getUser(); 
       } catch (error) {
         console.error(error);
       }
     };
 
     handleLogIn();
-    
   }, [user, executeScript, router]);
 
  
   const handleCheckin = () => {
-    console.log('we are checking in');
-    setsuccessCheckIn(true);
+    let dupeCheckIn = false;
+    const currentDay = moment().day();
+    let valueNeeded = '';
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const qrparam = urlParams.get('qr')
+    const currentChecks : string[] = currentSelectedUser.checkins;
+
+    if(currentChecks !== undefined) {
+      currentChecks.forEach((item) => {
+        // item.formedDate = new Date
+        const formedTime = moment(item).format("MMM Do YYYY");
+        const formedNowTime = moment().format("MMM Do YYYY");
+        if(formedTime === formedNowTime) {
+          dupeCheckIn = true;
+          setdupeCheckin(true);
+        }
+      });
+    }
+    if(!dupeCheckIn) {
+      Qrcodes.forEach((item) => {
+        if(item.date === currentDay) {
+          valueNeeded = item.value;
+        };
+      });
+      if(valueNeeded === qrparam){ 
+        setsuccessCheckIn(true);
+        updateUser();
+        // add additional handling for successful checkin
+      } else {
+        // add handling here for QR being incorrect
+      }
+    } else {
+      // add handling for dupe check in handling
+    }
+    
   }
 
   const addUser = async () => {
@@ -48,15 +87,32 @@ const Checkin = () => {
     });
   }
 
+  const updateUser = async () => {
+    let tempChecks : string[];
+    currentSelectedUser.checkins !== undefined ? tempChecks = currentSelectedUser.checkins : tempChecks = [];
+    const nowTime = moment().format();
+    tempChecks.push(nowTime);
+    updateDoc(doc(db, "members", user.addr), {
+      checkins: tempChecks
+    })
+    .then((result) => {
+      console.log('added checkin')
+    });
+  }
+
   const getUser = async () => {
     let q;
     const docRef = doc(db, "members", user.addr);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const tempUserData = docSnap.data();
-      console.log('yooooo', tempUserData);
+      const formedUser :  UserObject = {
+        address: tempUserData.address,
+        created: tempUserData.created,
+        checkins: tempUserData.checkins
+      }
+      setcurrentSelectedUser(formedUser);
     } else {
-      // need to add here
       addUser();
     }
   }
@@ -66,7 +122,8 @@ const Checkin = () => {
       <h1>hello world</h1>
       {!user.loggedIn && <div onClick={connect}>Log-in</div>}
       {user.loggedIn && <div onClick={logout}>Logout</div>}
-      {user.loggedIn && !successCheckIn && <div onClick={handleCheckin}>Checkin</div>}
+      {user.loggedIn && !successCheckIn && !dupeCheckin && <div onClick={handleCheckin}>Checkin</div>}
+      {dupeCheckin && <div >You already checked in today!</div>}
       {user.loggedIn && successCheckIn && <div >Success!</div>}
       {user.loggedIn &&
         <div>

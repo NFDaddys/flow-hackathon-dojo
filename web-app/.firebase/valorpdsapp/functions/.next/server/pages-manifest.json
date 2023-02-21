@@ -1,10 +1,10 @@
 {
-  "/_error": "pages/_error.js",
-  "/": "pages/index.html",
-  "/checkin": "pages/checkin.html",
-  "/_document": "pages/_document.js",
-  "/scan": "pages/scan.html",
-  "/api/hello": "pages/api/hello.js",
   "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/checkin": "pages/checkin.html",
+  "/": "pages/index.html",
+  "/scan": "pages/scan.html",
+  "/_error": "pages/_error.js",
   "/404": "pages/404.html"
 }

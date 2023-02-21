@@ -3,27 +3,6 @@ exports.id = 387;
 exports.ids = [387];
 exports.modules = {
 
-/***/ 516:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const API_ROOT = process.env.NEXT_PUBLIC_API_ROOT || "https://monster-maker.vercel.app";
-const ROUTES = {
-    // Frontend routes
-    HOME: "/",
-    CHECKIN: "/checkin",
-    SCAN: "/scan",
-    // API routes
-    API_SIGN_AS_MINTER: `${API_ROOT}/api/signAsMinter`,
-    API_SIGN_AS_MINTER_INFO: `${API_ROOT}/api/signAsMinter/info`
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ROUTES);
-
-
-/***/ }),
-
 /***/ 387:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -98,7 +77,7 @@ var router_default = /*#__PURE__*/__webpack_require__.n(router_);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(689);
 // EXTERNAL MODULE: external "@onflow/fcl-wc"
-var fcl_wc_ = __webpack_require__(691);
+var fcl_wc_ = __webpack_require__(345);
 ;// CONCATENATED MODULE: ./src/flow/web3.tsx
 
 
