@@ -1,0 +1,90 @@
+[
+    {
+        "name": "You’re First White Belt Stripe",
+        "icon": "belt1",
+        "image": "belt1",
+        "level": 1,
+        "criteria": 1,
+        "reward": "Congratulations, You’re FIRST Stripe on your White Belt. Claim Your NFT Stripe for your FLOW BELT",
+        "claimed": false,
+        "rid": 0,
+        "type": "NFT MINT"
+    },
+    {
+        "name": "You're Second White Belt Stripe",
+        "icon": "belt2",
+        "image": "White Belt Stripe 2",
+        "level": 2,
+        "criteria": 2,
+        "reward": "Insane! You’ve Just Earned your 2nd Stripe On Your White Belt. Claim Your NFT Stripe for your FLOW BELT",
+        "claimed": false,
+        "rid": 1,
+        "type": "NFT Mint"
+    },
+      {
+        "name": "You're Third White Belt Stripe",
+        "icon": "belt3",
+        "image": "White Belt Stripe 3",
+        "level": 3,
+        "criteria": 3,
+        "reward": "Congratulations, You just earned your THIRD Stripe on your White Belt. Claim Your NFT Stripe for your FLOW BELT",
+        "claimed": false,
+        "rid": 2,
+        "type": "NFT MINT"
+    },
+    {
+        "name": "You're Fourth White Belt Stripe Stripe",
+        "icon": "belt4",
+        "image": "White Belt Stripe 4",
+        "level": 4,
+        "criteria": 4,
+        "reward": "OSS! You've Just Earned your 4th Stripe On Your White Belt Claim Your NFT Stripe for your FLOW BELT",
+        "claimed": false,
+        "rid": 3,
+        "type": "NFT Mint"
+    },
+    {
+        "name": "You’re First Blue Belt Stripe",
+        "icon": "belt5",
+        "image": "Blue Belt Stripe 1",
+        "level": 5,
+        "criteria": 5,
+        "reward": "Congratulations, You're FIRST Stripe on your Blue Belt Claim Your NFT Stripe for your FLOW Belt",
+        "claimed": false,
+        "rid": 4,
+        "type": "NFT MINT"
+    },
+    {
+        "name": "You're Second Blue Belt Stripe",
+        "icon": "belt6",
+        "image": "Blue Belt Stripe 2",
+        "level": 6,
+        "criteria": 6,
+        "reward": "Insane! You've Just Earned your 2nd Stripe On Your Blue Belt Claim Your NFT Stripe for your FLOW Belt",
+        "claimed": false,
+        "rid": 5,
+        "type": "NFT Mint"
+    },
+    {
+        "name": "You're Third Blue Belt Stripe",
+        "icon": "belt7",
+        "image": "Blue Belt Stripe 3",
+        "level": 7,
+        "criteria": 7,
+        "reward": "Take a bow! You just earned your 3rd Blue Belt Stripe!  Claim Your NFT Stripe for your FLOW BELT",
+        "claimed": false,
+        "rid": 6,
+        "type": "NFT MINT"
+    },
+    {
+        "name": "You're Fourth Blue Belt Stripe",
+        "icon": "belt8",
+        "image": "Blue Belt Stripe 4",
+        "level": 8,
+        "criteria": 8,
+        "reward": "OSS, That makes 4 Stripes on your Blue Belt! Claim your NFT Stripe for your FLOW Belt",
+        "claimed": false,
+        "rid": 7,
+        "type": "NFT Mint"
+    }
+]

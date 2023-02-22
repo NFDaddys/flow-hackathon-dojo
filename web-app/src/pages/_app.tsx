@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { Web3ContextProvider } from '../flow/web3';
 import '../styles/bootstrap.min.css';
+import '../styles/main.css';
 import Navigation from '../components/nav'
 import Footer from '../components/footer'
 

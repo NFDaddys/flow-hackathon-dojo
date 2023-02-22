@@ -5,9 +5,108 @@
         "image": "Combat Academy Button 1",
         "level": 1,
         "criteria": 1,
-        "reward": "no nft reward",
+        "reward": "Keep Attending Class To Earn More Rewards",
         "claimed": false,
         "rid": 0,
-        "type": "no nft reward"
+        "type": "quote"
+    },
+    {
+        "name": "SLAP BUMP ROLL",
+        "icon": "lion2",
+        "image": "Combat Academy Button 2",
+        "level": 2,
+        "criteria": 10,
+        "reward": "You've Just Earned a VPDS Sticker",
+        "claimed": false,
+        "rid": 1,
+        "type": "Redeem At Counter"
+    },
+    {
+        "name": "OPEN GUARD OR CLOSED GUARD",
+        "icon": "lion3",
+        "image": "Combat Academy Button 3",
+        "level": 3,
+        "criteria": 20,
+        "reward": "Almost to the Next Level - Keep Going!",
+        "claimed": false,
+        "rid": 2,
+        "type": "quote"
+    },
+    {
+        "name": "VALOR CHALLENGE ACCEPTED",
+        "icon": "lion4",
+        "image": "Combat Academy Button 4",
+        "level": 4,
+        "criteria": 30,
+        "reward": "T-Shirt Time",
+        "claimed": false,
+        "rid": 3,
+        "type": "physical bjj dri-fit shirt"
+    },
+    {
+        "name": "First Stripe is coming soon",
+        "icon": "line5",
+        "image": "Combat Academy Button 5",
+        "level": 5,
+        "criteria": 40,
+        "reward": "You’ve Just Earned a Free VPDS Beanie",
+        "claimed": false,
+        "rid": 4,
+        "type": "Redeem At Counter"
+    },
+    {
+        "name": "Invert to Back Take",
+        "icon": "lion6",
+        "image": "Combat Academy Button 6",
+        "level": 6,
+        "criteria": 50,
+        "reward": "free firearms course",
+        "claimed": false,
+        "rid": 5,
+        "type": " free level 1 firearms course "
+    },
+    {
+        "name": "Safety Is Priority #1",
+        "icon": "lion7",
+        "image": "Combat Academy Button 7",
+        "level": 7,
+        "criteria": 60,
+        "reward": "You’ve Earned a VPDS Waterbottle",
+        "claimed": false,
+        "rid": 6,
+        "type": "Redeem At Counter"
+    },
+    {
+        "name": "Sweat in The Eyes",
+        "icon": "lion8",
+        "image": "Combat Academy Button 8",
+        "level": 8,
+        "criteria": 70,
+        "reward": "Free VPDS Rashie",
+        "claimed": false,
+        "rid": 7,
+        "type": "Redeem at Counter"
+    },
+    {
+        "name": "Treating yourself Like Royalty",
+        "icon": "lion9",
+        "image": "Combat Academy Button 9",
+        "level": 9,
+        "criteria": 80,
+        "reward": "You've Just Earned a Free Set of VPDS Spats",
+        "claimed": false,
+        "rid": 8,
+        "type": "Redeem At Counter"
+    },
+    {
+        "name": "Motivated is an Understatement",
+        "icon": "lion10",
+        "image": "Combat Academy Button 10",
+        "level": 10,
+        "criteria": 100,
+        "reward": "You Just earned a New VPDS Gear Bag",
+        "claimed": false,
+        "rid": 9,
+        "type": "Redeem at Counter"
     }
 ]

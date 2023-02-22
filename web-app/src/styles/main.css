@@ -1,0 +1,123 @@
+body {
+    background-image: url("/ngd.png") !important;
+}
+.backstyle {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    inset: 0px;
+    z-index: 999;
+    perspective: 800px;
+    transition: opacity 250ms ease-in-out 0s;
+    opacity: 1;
+}
+.profile-avatar img {
+    margin-bottom: 0px !important;
+    height: 105px;
+    width: auto;
+    border-radius: 50%;
+    border: 3px solid #111;
+    border-style: solid;
+}
+.refix {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    text-align: center;
+    background-image: linear-gradient(rgba(102,102,102,1), rgba(17,17,17,1));
+    color: white;
+    position: fixed;
+    top: 2%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 10px;
+    padding: 1em;
+    max-height: calc(100vh - 48
+    px);
+    outline: 0;
+    border: 1px solid rgba(33,33,33,0.25);
+    z-index: 999;
+    width: 380px;
+    min-height: 384px;
+    overflow-y: auto;
+}
+.closebtn {
+    position: absolute;
+    right: 13px;
+    top: 11px;
+}
+.containment .mb-3 {
+    text-align: left;
+    padding-bottom: 0px;
+    margin-bottom: 10px !important;
+}
+.linker {
+    margin: 12px !important;
+}
+.container-lead {
+    display: flex;
+}
+.container-lead .profile-avatar img {
+    height: 44px;
+}
+.avatar-selector {
+    display: flex;
+}
+.avatar-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+}
+.avatar-image-container img {
+    margin-bottom: 0px !important;
+    height: 105px;
+    width: auto;
+    border-radius: 50%;
+    border: 3px solid #666;
+    border-style: solid;
+}
+.badge-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.open-dia {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0px;
+    outline: 0 !important;
+    cursor: pointer;
+}
+.newbadge {
+    width: 104px;
+    height: 104px;
+    margin: 0 10px;
+    border: 0px;
+    padding: 0;
+    background-color: transparent;
+}
+.lion {
+    background-image: url("/valor-badge.png") !important;
+    background-size: cover !important;
+}
+.belt1 {
+    background-image: url("/valor-badge.png") !important;
+    background-size: cover !important;
+}
+.preview-image {
+    color: white;
+    font-size: 12px;
+    padding-top: 4px;
+}
+.avatar-list {
+    max-height: 140px;
+    overflow-y: auto;
+    flex: 1;
+}
+.avatartitle {
+    padding-top: 10px;
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { UserObject } from '../constants/models';
+import { useWeb3Context } from '../flow/web3';
 import router from 'next/router';
 import {
   Collapse,
@@ -12,10 +12,7 @@ import {
   
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-    
-  useEffect(() => {
-      
-  }, []);
+  const { logout, user, connect } = useWeb3Context();
 
   const navigateLink = (route: string) => {
     router.push(route);
@@ -36,6 +33,13 @@ const Navigation = () => {
               <NavItem>
                 <NavLink  onClick={() => navigateLink('/profile')}>Profile</NavLink>
               </NavItem>
+              { !user.loggedIn ?
+                <NavLink  onClick={connect}>Log-in</NavLink>                
+                :
+                <NavLink  onClick={logout}>Logout</NavLink>
+              }
+              <NavItem>
+              </NavItem>              
             </Nav>
           </Collapse>
         </Navbar>

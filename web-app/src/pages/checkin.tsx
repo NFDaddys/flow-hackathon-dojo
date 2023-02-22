@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import moment from 'moment';
 import Qrcodes from "../check-code.json";
 import Rewards from "../rewards.json";
+import BeltRewards from "../belts.json";
 import { UserObject, InitValue, Reward } from "../constants/models";
 
 
@@ -13,7 +14,7 @@ import { UserObject, InitValue, Reward } from "../constants/models";
   const [dupeCheckin, setdupeCheckin] = useState(false);
   const [successCheckIn, setsuccessCheckIn] = useState(false);
   const [currentSelectedUser, setcurrentSelectedUser] = useState<UserObject>(InitValue);
-  const [levelInfo, setLevelInfo] = useState({});
+  const [levelInfo, setLevelInfo] = useState({}); // will use for new reward notification handling
 
   useEffect(() => {
     if (!user.loggedIn) return 
@@ -37,8 +38,12 @@ import { UserObject, InitValue, Reward } from "../constants/models";
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const qrparam = urlParams.get('qr')
+    const testVersion = urlParams.get('test')
     const currentChecks : string[] = currentSelectedUser.checkins;
 
+    if(testVersion) {
+      saveTestResults(parseInt(testVersion));
+    }
     if(currentChecks !== undefined) {
       currentChecks.forEach((item) => {
         // item.formedDate = new Date
@@ -74,8 +79,8 @@ import { UserObject, InitValue, Reward } from "../constants/models";
     const prevEarnedRewards : Reward[] = currentSelectedUser.rewards !== undefined ? currentSelectedUser.rewards : [];
     let currentRewards : Reward[] = [];   
     let currentLevel = 0;
-
-    if (currentSelectedUser.rewards !== undefined) {
+    console.log('is this undefined? ', currentSelectedUser.rewards);
+    if (currentSelectedUser.rewards && currentSelectedUser.rewards.length > 0) {
       // loop through each reward
       Rewards.forEach((item:any) => {
         // if 'checkins.length' >= the reward -- push reward
@@ -102,8 +107,10 @@ import { UserObject, InitValue, Reward } from "../constants/models";
       // the dont have metadata -- assuming its their first visit
       const currentLevel = 1;
       const defaultlevel: any = Rewards[0];
+      console.log('this should be a level ', defaultlevel);
       currentRewards.push(defaultlevel); 
       updateUser(currentRewards, currentLevel);
+      // HAWK HAWK HAWK LOOKAT THIS, MIGHT BE BUGGY
     }   
     
   };
@@ -131,7 +138,26 @@ import { UserObject, InitValue, Reward } from "../constants/models";
     .then((result) => {
       console.log('added checkin')
     });
-    
+  }
+
+  const saveTestResults = async (testNumber?: number) => {
+    let tempTests : any;
+    let tempTestRewards : any;
+    const levelnum = testNumber !== undefined ? testNumber-1 : 0;
+    currentSelectedUser.tests !== undefined ? tempTests = currentSelectedUser.tests : tempTests = [];
+    currentSelectedUser.testsRewards !== undefined ? tempTestRewards = currentSelectedUser.testsRewards : tempTestRewards = [];
+    const nowTime = moment().format();
+    tempTests.push({date: nowTime, test: testNumber});
+    tempTestRewards.push(BeltRewards[levelnum]);
+    updateDoc(doc(db, "members", user.addr), {
+      tests: tempTests,
+      testsRewards: tempTestRewards
+    })
+    .then((result) => {
+      console.log('added test results');
+      // handle confetti celebrate view
+      // show them the badge and where claimable
+    });
   }
 
   const getUser = async () => {
@@ -145,7 +171,8 @@ import { UserObject, InitValue, Reward } from "../constants/models";
         created: tempUserData.created,
         checkins: tempUserData.checkins,
         totalPoints: tempUserData.checkins.length,
-        rewards: tempUserData.rewards
+        rewards: tempUserData.rewards,
+        tests: tempUserData.tests
       }
       setcurrentSelectedUser(formedUser);
     } else {

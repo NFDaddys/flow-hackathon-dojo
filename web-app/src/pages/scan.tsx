@@ -3,19 +3,48 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Qrcodes from "../check-code.json";
 import moment from 'moment';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import {QRCodeSVG} from 'qrcode.react';
 
 const Scan = () => {
   const router = useRouter();
   const currentDay = moment().day();
   const [imageString, setimageString] = useState('');
+  const [testVersion, settestVersion] = useState('');
+  const [currentUrl, seticurrentUrl] = useState('');
+  const [dropdownOpen, setdropdownOpen] = useState(false);
+  const [activeQR, setactiveQR] = useState(0);
 
-  const goCheckIn = () => {
-    router.push(ROUTES.CHECKIN);
-  }
+    const goCheckIn = () => {
+        router.push({
+            pathname: ROUTES.CHECKIN,
+            query: {
+                qr: currentUrl,
+            },
+        }) 
+    }
+    const goCheckInTest = () => {
+        router.push({
+            pathname: ROUTES.CHECKIN,
+            query: {
+                test: activeQR,
+                qr: currentUrl
+            },
+        }) 
+    }
+
+
+    const formUrl = () => {
+        Qrcodes.forEach((item) => {
+            if(item.date === currentDay) {
+                seticurrentUrl(item.value);
+            };
+        });
+    }
 
   useEffect(() => {
     gettingCorrectQr();
+    formUrl();
   }, []);
 
     const gettingCorrectQr = async () => {
@@ -54,12 +83,43 @@ const Scan = () => {
     });
 };
 
+    const handleSelection = (test: number) => {
+        setactiveQR(test)
+    }
+
+    const toggle = () => {
+        setdropdownOpen(!dropdownOpen)
+    }
+
   return (
-      <div onClick={goCheckIn}>
-        <div className="qr-image" >
-          <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="#111" value={'https://valorpdsapp.web.app/checkin?qr=' + imageString} />
-        </div>
-      </div>
+    <>
+        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle caret>
+            Select QR
+            </DropdownToggle>
+            <DropdownMenu>
+                <DropdownItem active onClick={() => handleSelection(0)}>Course Checkin</DropdownItem>
+                <DropdownItem onClick={() => handleSelection(1)}>Test 1</DropdownItem>
+                <DropdownItem onClick={() => handleSelection(2)}>Test 2</DropdownItem>
+                <DropdownItem onClick={() => handleSelection(3)}>Test 3</DropdownItem>
+                <DropdownItem onClick={() => handleSelection(4)}>Test 4</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+        {activeQR === 0 &&
+            <div onClick={goCheckIn}>
+            <div className="qr-image" >
+              <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="#111" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}`} />
+            </div>
+          </div>
+        }
+        {activeQR >= 1 &&
+            <div onClick={goCheckInTest}>
+                <div className="qr-image" >
+                <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="#111" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}&test=${activeQR}`} />
+                </div>
+          </div>
+        }
+    </>
   );
 };
 

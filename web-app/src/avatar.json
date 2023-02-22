@@ -1,0 +1,44 @@
+[
+    {
+        "type": "Gravatar",
+        "criteria": 1,
+        "tests": 0,
+        "name": "Standard Gravatar"
+    },
+    {
+        "type": "MonsterId",
+        "criteria": 1,
+        "tests": 0,
+        "name": "MonsterId"
+    },
+    {
+        "type": "Francis",
+        "criteria": 1,
+        "tests": 0,
+        "name": "Francis"
+    },
+    {
+        "type": "Pepe",
+        "criteria": 1,
+        "tests": 0,
+        "name": "Pepe"
+    },
+    {
+        "type": "Robert",
+        "criteria": 1,
+        "tests": 0,
+        "name": "Robert"
+    },
+    {
+        "type": "NFDBeat",
+        "criteria": 10,
+        "tests": 0,
+        "name": "NFD Fighter Daddy"
+    },
+    {
+        "type": "Hawk",
+        "criteria": 1,
+        "tests": 1,
+        "name": "Time to Hawk out!"
+    }
+]
