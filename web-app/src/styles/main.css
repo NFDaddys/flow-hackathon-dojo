@@ -21,7 +21,7 @@ body {
     margin-bottom: 10px!important;
     width: 95%;
     margin-top: 16px;
-    margin-left: 2.5%;
+    /* margin-left: 2.5%; */
     color: #fff;
     border-radius: 15px;
     box-shadow: 5px 2px rgb(0 0 0 / 30%);
@@ -222,7 +222,7 @@ h4 {
     font-size: 16px;
 }
 a {
-    color: #ff0;
+    color: #ff0 !important;
 }
 @media (max-width: 768px) {
     .drop-qr button {

@@ -101,7 +101,7 @@ const Scan = () => {
             <DropdownMenu>
               <DropdownItem active onClick={() => handleSelection(0)}>Course Checkin</DropdownItem>
               {BeltRewards.map((e: any, j) => (
-                <DropdownItem onClick={() => handleSelection(e.level)}>{e.title}</DropdownItem>
+                <DropdownItem key={e.icon+"-"+j} onClick={() => handleSelection(e.level)}>{e.title}</DropdownItem>
               ))}
                 
             </DropdownMenu>

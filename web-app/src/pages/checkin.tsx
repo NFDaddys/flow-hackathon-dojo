@@ -223,7 +223,8 @@ import useWindowSize from 'react-use/lib/useWindowSize'
         />
       }
       <div className="flex-holder">
-      {!user.loggedIn ? <div onClick={connect}>Log-in</div>
+      {!user.loggedIn ? 
+      <button className="clicklink blue-but" onClick={connect}>Log-in</button>
       :
         <>
           <div className="profile-header">
