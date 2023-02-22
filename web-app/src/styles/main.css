@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=BenchNine:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
 body {
-    /* background-image: url("/ngd.png") !important; */
-    background-color: #111 !important;
+    background-image: url("/ngd.png") !important;
+    /* background-color: #111 !important; */
     color: #fffff2;
     height: 100%
 }
@@ -31,6 +32,28 @@ h4 {
     font-family: "Rubik",sans-serif !important;
     font-size: 2.5rem;
 }
+.ldr-points {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-right: 13px;
+    color:#111;
+    line-height: 28px;
+    padding-top: 10px;
+}
+.pointtot {
+    font-family: 'Black Ops One', cursive;
+    font-size: 34px;
+}
+.usernam {
+    font-family: 'Black Ops One', cursive !important;
+    color: white;
+    font-size: 32px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    line-height: 27px;
+    padding-top: 11px;
+}
 .nav-item .nav-link, .navbar-nav .nav-link {
     display: flex;
     align-items: center;
@@ -48,7 +71,7 @@ h4 {
 }
 .nav-container {
     border-bottom: 1px solid #fff;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 .bg-dark {
     background-color: #111 !important;
@@ -112,9 +135,19 @@ h4 {
 }
 .container-lead {
     display: flex;
+    /* background-color: red; */
+    border: 3px solid #111;
+    border-radius: 20px;
+    align-items: center;
+    width: 100%;
+    background: rgb(109,67,25);
+background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
 }
 .container-lead .profile-avatar img {
-    height: 44px;
+    height: 77px;
+    margin: 0;
+    margin-left: -24px;
+    margin-right: 16px;
 }
 .avatar-selector {
     display: flex;
@@ -145,6 +178,9 @@ h4 {
     border: 0px;
     outline: 0 !important;
     cursor: pointer;
+    padding: 0 4%;
+    margin: 17px 0;
+    margin-left: 20px;
 }
 .newbadge {
     width: 104px;
@@ -185,6 +221,16 @@ h4 {
 .centering {
     text-align: center;
 }
+.middle-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.levelsub {
+    color: #111;
+    font-size: 20px;
+    font-weight: 300;
+}
 .success-msg {
     border: 0 solid #0abdc6;
     background-color: initial;
@@ -198,6 +244,16 @@ h4 {
 }
 .sm-date {
     font-size: 16px;
+}
+.title-header {
+    background: rgb(7,7,7);
+    text-align: center;
+    background: linear-gradient(0deg, rgba(7,7,7,1) 35%, rgba(65,65,65,1) 99%);
+    padding: 22px 0;
+    margin-top: 0px;
+    margin-bottom: 26px;
+    font-family: 'Black Ops One', cursive;
+    text-transform: uppercase;
 }
 .blue-but {
     background: linear-gradient(0deg,#133e7c,#0abdc6)!important;
@@ -220,6 +276,7 @@ h4 {
     margin-bottom: 20px;
     line-height: 38px;
     font-size: 16px;
+    color: white;
 }
 a {
     color: #ff0 !important;

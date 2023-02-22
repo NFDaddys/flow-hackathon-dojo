@@ -69,7 +69,7 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h1>Leaderboard</h1>
+      <h1 className="title-header">Leaderboard</h1>
       {leaderBoard?.slice(0, 20).map((d, i) => (
         <div className="open-dia" key={i} onClick={() => openModal(d)}>
         {/* <div className="open-dia" key={i} onClick={() => setSelectedUser(d)}> */}
@@ -78,22 +78,20 @@ const Leaderboard = () => {
               <Avatar address={d.address} avatar={d.metaData?.avatar} />
             </div>
             {d.metaData?.userName ?
-                  <div>
-                      <h4>{d.metaData?.userName}</h4>
+                  <div className="middle-item">
+                      <h4 className="usernam">{d.metaData?.userName}</h4>
+                      <span className="levelsub">Level {d.level}</span>
                   </div>
               :
-                  <div>
-                      <h4>{truncateWallet(d.address)}</h4>
+                  <div className="middle-item">
+                    <h4 className="usernam">{truncateWallet(d.address)}</h4>
+                    <span className="levelsub">Level {d.level}</span>
                   </div>
               }
-              <div>
-                <span>Total Points:</span>
-                {d.totalPoints}
+              <div className="ldr-points">
+                <span className="pointtot">{d.totalPoints}</span>
+                <span className="pointlab">Points</span>
               </div>
-              <div>
-                <span>Member Since:</span>
-                {d.membersince}
-                </div>
           </div>
         </div>
       ))}

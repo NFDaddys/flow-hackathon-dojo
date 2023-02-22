@@ -151,19 +151,20 @@ const Profile = () => {
     }, [user, executeScript]);
 
   return (
-    <div>
-   
-        <div>
-            <h1>Profile</h1>
-            {user.loggedIn && 
-                <div className="open-dia" onClick={() => openModal()}>
-                    <p className="edit-button">Edit Profile</p>
-                </div>
-            }
-        </div>
-    
-      {!user.loggedIn && <div onClick={connect}>Log-in</div>}
-      {user.loggedIn && 
+    <div className="flex-holder">
+      <div>
+        <h1>Profile</h1>
+        {user.loggedIn && 
+            <div className="open-dia" onClick={() => openModal()}>
+                <p className="edit-button">Edit Profile</p>
+            </div>
+        }
+      </div>
+   {!user.loggedIn ? 
+      <button className="clicklink blue-but" onClick={connect}>Log-in</button>
+      :
+      <div className="profile-header">
+        {user.loggedIn && 
       <div>
             {currentSelectedUser.metaData?.userName ?
                 <div>
@@ -228,6 +229,8 @@ const Profile = () => {
             </div>
         </div>
         }
+      </div>
+    }     
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
