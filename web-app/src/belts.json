@@ -1,6 +1,7 @@
 [
     {
         "name": "You’re First White Belt Stripe",
+        "title": "VPDS BRONZE I",
         "icon": "belt1",
         "image": "belt1",
         "level": 1,
@@ -12,6 +13,7 @@
     },
     {
         "name": "You're Second White Belt Stripe",
+        "title": "VPDS SILVER I",
         "icon": "belt2",
         "image": "White Belt Stripe 2",
         "level": 2,
@@ -23,6 +25,7 @@
     },
       {
         "name": "You're Third White Belt Stripe",
+        "title": "VPDS GOLD I",
         "icon": "belt3",
         "image": "White Belt Stripe 3",
         "level": 3,
@@ -34,6 +37,7 @@
     },
     {
         "name": "You're Fourth White Belt Stripe Stripe",
+        "title": "VPDS PLATINUM I",
         "icon": "belt4",
         "image": "White Belt Stripe 4",
         "level": 4,
@@ -45,6 +49,7 @@
     },
     {
         "name": "You’re First Blue Belt Stripe",
+        "title": "VPDS BRONZE 2",
         "icon": "belt5",
         "image": "Blue Belt Stripe 1",
         "level": 5,
@@ -56,6 +61,7 @@
     },
     {
         "name": "You're Second Blue Belt Stripe",
+        "title": "VPDS SILVER 2",
         "icon": "belt6",
         "image": "Blue Belt Stripe 2",
         "level": 6,
@@ -67,6 +73,7 @@
     },
     {
         "name": "You're Third Blue Belt Stripe",
+        "title": "VPDS GOLD 2",
         "icon": "belt7",
         "image": "Blue Belt Stripe 3",
         "level": 7,
@@ -78,6 +85,7 @@
     },
     {
         "name": "You're Fourth Blue Belt Stripe",
+        "title": "VPDS PLATINUM 2",
         "icon": "belt8",
         "image": "Blue Belt Stripe 4",
         "level": 8,

@@ -9,6 +9,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { UserObject, InitValue } from "../constants/models";
 import Modal from 'react-modal';
 import React from "react";
+import {truncateWallet} from '../utils/utils'
 
 Modal.setAppElement('#__next');
 
@@ -82,7 +83,7 @@ const Leaderboard = () => {
                   </div>
               :
                   <div>
-                      <h4>{d.address}</h4>
+                      <h4>{truncateWallet(d.address)}</h4>
                   </div>
               }
               <div>
@@ -122,7 +123,7 @@ const Leaderboard = () => {
             </div>
         :
             <div>
-                <h4>{selectedUser.address}</h4>
+                <h4>{truncateWallet(selectedUser.address)}</h4>
             </div>
         }
       </div>

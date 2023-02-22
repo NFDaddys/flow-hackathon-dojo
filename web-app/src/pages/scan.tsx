@@ -5,6 +5,7 @@ import Qrcodes from "../check-code.json";
 import moment from 'moment';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import {QRCodeSVG} from 'qrcode.react';
+import BeltRewards from "../belts.json";
 
 const Scan = () => {
   const router = useRouter();
@@ -93,29 +94,29 @@ const Scan = () => {
 
   return (
     <>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <Dropdown isOpen={dropdownOpen} toggle={toggle} className="drop-qr">
             <DropdownToggle caret>
             Select QR
             </DropdownToggle>
             <DropdownMenu>
-                <DropdownItem active onClick={() => handleSelection(0)}>Course Checkin</DropdownItem>
-                <DropdownItem onClick={() => handleSelection(1)}>Test 1</DropdownItem>
-                <DropdownItem onClick={() => handleSelection(2)}>Test 2</DropdownItem>
-                <DropdownItem onClick={() => handleSelection(3)}>Test 3</DropdownItem>
-                <DropdownItem onClick={() => handleSelection(4)}>Test 4</DropdownItem>
+              <DropdownItem active onClick={() => handleSelection(0)}>Course Checkin</DropdownItem>
+              {BeltRewards.map((e: any, j) => (
+                <DropdownItem key={j} onClick={() => handleSelection(e.level)}>{e.title}</DropdownItem>
+              ))}
+                
             </DropdownMenu>
         </Dropdown>
         {activeQR === 0 &&
             <div onClick={goCheckIn}>
             <div className="qr-image" >
-              <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="#111" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}`} />
+              <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="transparent" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}`} />
             </div>
           </div>
         }
         {activeQR >= 1 &&
             <div onClick={goCheckInTest}>
                 <div className="qr-image" >
-                <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="#111" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}&test=${activeQR}`} />
+                <QRCodeSVG size={400} includeMargin={true} fgColor="#d4cac8" bgColor="transparent" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}&test=${activeQR}`} />
                 </div>
           </div>
         }

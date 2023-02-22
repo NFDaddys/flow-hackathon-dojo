@@ -2,19 +2,30 @@ import { useWeb3Context } from '../flow/web3';
 import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
+import 'react-toastify/dist/ReactToastify.css';
+import router from 'next/router';
 import moment from 'moment';
 import Qrcodes from "../check-code.json";
 import Rewards from "../rewards.json";
 import BeltRewards from "../belts.json";
 import { UserObject, InitValue, Reward } from "../constants/models";
-
+import Avatar from '@/components/avatar';
+import { truncateWallet } from '@/utils/utils';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Confetti from 'react-confetti'
+import { ToastContainer, toast } from 'react-toastify';
+import useWindowSize from 'react-use/lib/useWindowSize'
 
  const Checkin = () => {
+  const { width, height } = useWindowSize();
   const { connect, user, executeScript, logout } = useWeb3Context();
   const [dupeCheckin, setdupeCheckin] = useState(false);
   const [successCheckIn, setsuccessCheckIn] = useState(false);
   const [currentSelectedUser, setcurrentSelectedUser] = useState<UserObject>(InitValue);
   const [levelInfo, setLevelInfo] = useState({}); // will use for new reward notification handling
+  const [today, settoday] = useState(moment().format("MMM Do YYYY")); // will use for new reward notification handling
+  let currentDay = moment().day();
 
   useEffect(() => {
     if (!user.loggedIn) return 
@@ -31,9 +42,12 @@ import { UserObject, InitValue, Reward } from "../constants/models";
   }, [user, executeScript]);
 
  
+  const navigteToProfile = () => {
+    router.push('/profile');
+  }
   const handleCheckin = () => {
     let dupeCheckIn = false;
-    const currentDay = moment().day();
+    
     let valueNeeded = '';
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -52,6 +66,15 @@ import { UserObject, InitValue, Reward } from "../constants/models";
         if(formedTime === formedNowTime) {
           dupeCheckIn = true;
           setdupeCheckin(true);
+          toast.info("Welcome back! We missed you too!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+          });
         }
       });
     }
@@ -64,6 +87,15 @@ import { UserObject, InitValue, Reward } from "../constants/models";
       if(valueNeeded === qrparam){ 
         // add additional handling for successful checkin
         setsuccessCheckIn(true);
+        toast.success("SUCCESS: You checked in successfully!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        });
         // handle rewards
         checkRewardStatus();
       } else {
@@ -172,7 +204,8 @@ import { UserObject, InitValue, Reward } from "../constants/models";
         checkins: tempUserData.checkins,
         totalPoints: tempUserData.checkins.length,
         rewards: tempUserData.rewards,
-        tests: tempUserData.tests
+        tests: tempUserData.tests,
+        metaData: tempUserData.metaData,
       }
       setcurrentSelectedUser(formedUser);
     } else {
@@ -181,19 +214,72 @@ import { UserObject, InitValue, Reward } from "../constants/models";
   }
 
   return (
-    <div>
-      <h1>hello world</h1>
-      {!user.loggedIn && <div onClick={connect}>Log-in</div>}
-      {user.loggedIn && <div onClick={logout}>Logout</div>}
-      {user.loggedIn && !successCheckIn && !dupeCheckin && <div onClick={handleCheckin}>Checkin</div>}
-      {dupeCheckin && <div >You already checked in today!</div>}
-      {user.loggedIn && successCheckIn && <div >Success!</div>}
-      {user.loggedIn &&
-        <div>
-         Address: {user.addr}
-        </div>
+    <>
+      {successCheckIn || dupeCheckin && 
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={60}
+        />
       }
+      <div className="flex-holder">
+      {!user.loggedIn ? <div onClick={connect}>Log-in</div>
+      :
+        <>
+          <div className="profile-header">
+            <div className="profile-avatar">
+              <Avatar address={currentSelectedUser.address} avatar={currentSelectedUser.metaData?.avatar} />
+            </div>
+            {currentSelectedUser.metaData?.userName ?
+              <div>
+                  <h4>Hey {currentSelectedUser.metaData?.userName}!</h4>
+              </div>
+            :
+              <div>
+                <h4>Hey {truncateWallet(currentSelectedUser.address)}</h4>
+              </div>
+            }
+            {!successCheckIn && !dupeCheckin &&  <button className="clicklink blue-but" onClick={handleCheckin}>Check In</button>}
+          </div>
+          {/* {<div onClick={logout}>Logout</div>} */}
+          {dupeCheckin && 
+            <div className="centering">
+            <div className="success-msg">
+              <span >You already checked in today!  - {today}</span>
+              
+           </div>
+            
+            <button className="clicklink blue-but" onClick={navigteToProfile}>View Your Profile</button>
+            </div>
+          }
+          {successCheckIn && 
+            <>
+              <div className="success-msg">
+                <span><FontAwesomeIcon icon={faCheck} /> Check In Successful! - {today}</span>
+               
+                </div>
+              
+              <button className="clicklink blue-but" onClick={navigteToProfile}>View Your Profile</button>
+            </>
+          }
+          
+        </>
+      }
+      
     </div>
+    <ToastContainer
+      position="top-right"
+      autoClose={1500}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
+    </>
+    
   );
 };
 

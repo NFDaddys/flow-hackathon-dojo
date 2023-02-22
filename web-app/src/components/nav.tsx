@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faRankingStar, faPeopleArrows, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { useWeb3Context } from '../flow/web3';
 import router from 'next/router';
 import {
@@ -20,23 +22,33 @@ const Navigation = () => {
 
   return (
     <div className="nav-container">
-      <Navbar color="light" light expand="md">
+      <Navbar color="dark" dark expand="md">
         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink onClick={() => navigateLink('/')}>Home</NavLink>
+                <NavLink onClick={() => navigateLink('/')}>
+                  <FontAwesomeIcon icon={faHome} className="nav-ico" /> Home
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={() => navigateLink('/leaderboard')}>Leaderboard</NavLink>
+                <NavLink onClick={() => navigateLink('/leaderboard')}>
+                  <FontAwesomeIcon icon={faRankingStar} className="nav-ico" /> Leaderboard
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  onClick={() => navigateLink('/profile')}>Profile</NavLink>
+                <NavLink  onClick={() => navigateLink('/profile')}>
+                  <FontAwesomeIcon icon={faPeopleArrows} className="nav-ico" /> Profile
+                </NavLink>
               </NavItem>
               { !user.loggedIn ?
-                <NavLink  onClick={connect}>Log-in</NavLink>                
+                <NavLink  onClick={connect}>
+                  <FontAwesomeIcon icon={faPowerOff} className="nav-ico" />
+                  Log-in</NavLink>                
                 :
-                <NavLink  onClick={logout}>Logout</NavLink>
+                <NavLink  onClick={logout}>
+                  <FontAwesomeIcon icon={faPowerOff} className="nav-ico" /> Logout
+                </NavLink>
               }
               <NavItem>
               </NavItem>              
