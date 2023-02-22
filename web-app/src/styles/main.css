@@ -4,7 +4,7 @@
 
 body {
     /* background-image: url("/ngd.png") !important; */
-    background-color: #111;
+    background-color: #111 !important;
     color: #fffff2;
     height: 100%
 }
