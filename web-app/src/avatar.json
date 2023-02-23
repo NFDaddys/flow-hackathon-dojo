@@ -30,6 +30,12 @@
         "name": "Robert"
     },
     {
+        "type": "Ronda",
+        "criteria": 1,
+        "tests": 0,
+        "name": "Ronda"
+    },
+    {
         "type": "NFDBeat",
         "criteria": 10,
         "tests": 0,

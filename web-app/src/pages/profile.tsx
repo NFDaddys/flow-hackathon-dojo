@@ -152,64 +152,60 @@ const Profile = () => {
 
   return (
     <div className="flex-holder">
-      <div>
-        <h1>Profile</h1>
-        {user.loggedIn && 
-            <div className="open-dia" onClick={() => openModal()}>
-                <p className="edit-button">Edit Profile</p>
-            </div>
-        }
-      </div>
+      <h1 className="title-header">Profile</h1>
    {!user.loggedIn ? 
       <button className="clicklink blue-but" onClick={connect}>Log-in</button>
       :
       <div className="profile-header">
         {user.loggedIn && 
-      <div>
-            {currentSelectedUser.metaData?.userName ?
-                <div>
-                    <h4>{currentSelectedUser.metaData?.userName}</h4>
-                </div>
-            :
-                <div>
-                    <span>Member ID:</span>
-                    <span>{currentSelectedUser.address}</span>
-                </div>
-            }
+      <div className="profile-subhead">
             <div className="profile-avatar">
                 <Avatar address={user.addr} avatar={userMetaData.avatar} />
             </div>
+            <div className="open-dia edify" onClick={() => openModal()}>
+                <p className="edit-button">Edit Profile</p>
+            </div>
+            {currentSelectedUser.metaData?.userName ?
+                <div>
+                    <h4 className="pro-name">{currentSelectedUser.metaData?.userName}</h4>
+                </div>
+            :
+                <div>
+                  <h4 className="pro-name">{currentSelectedUser.address}</h4>
+                </div>
+            }
+            <div className='levelpro'>
+                <span>Level</span>
+                <span>{' ' + currentSelectedUser.level}</span>
+            </div>
+            <div className="ldr-points propoints">
+              <span className="pointtot">{currentSelectedUser.totalPoints}</span>
+              <span className="pointlab">Points</span>
+            </div>
             <ProgressBar className="progress-bar-hawk" completed={currentSelectedUser.checkins.length} customLabel=" " maxCompleted={maxLevel} />
-            <div>
-                <span>Member Since:</span>
-                <span>{currentSelectedUser.membersince}</span>
-            </div>
-            <div>
-                <span>Bio:</span>
-                <span>{currentSelectedUser.metaData?.bio}</span>
-            </div>
-            <div>
+            
+            
+            {/* <div>
                 <span>Twitter:</span>
                 <span>{currentSelectedUser.metaData?.twitter}</span>
+            </div> */}
+            <div className="date-holding">
+                <div className="inv-date">
+                    <span className="date-labels">Last Checkin:</span>
+                    <span className="date-date">{currentSelectedUser.lastcheckin}</span>
+                </div>
+                <div className="inv-date">
+                  <span className="date-labels">Member Since:</span>
+                  <span className="date-date">{currentSelectedUser.membersince}</span>
+              </div>
             </div>
-            <div>
-                <span>Belt Level:</span>
-                <span>{currentSelectedUser.level}</span>
-            </div>
-            <div>
-                <span>Total Checkins:</span>
-                <span>{currentSelectedUser.totalPoints}</span>
-            </div>
-            <div>
-                <span>Last Checkin:</span>
-                <span>{currentSelectedUser.lastcheckin}</span>
-            </div>
+            
             {currentSelectedUser.testsRewards && currentSelectedUser.testsRewards?.length > 0  && 
-              <div>
+              <div className="belts-earned">
                 <span>Belts Earned:</span>
                 {currentSelectedUser.testsRewards?.map((e: any, j) => (
                     <div className="badge" key={j}>
-                        <div className="open-dia" onClick={() => openBadgeModal(e)}>
+                        <div className="open-dia badge-shade" onClick={() => openBadgeModal(e)}>
                         <div className={'newbadge ' + e.icon}></div>
                         </div>
                     </div>
@@ -217,11 +213,11 @@ const Profile = () => {
             </div>
             }
             
-            <div>
+            <div className="belts-earned beltin">
                 <span>Badges Earned:</span>
                 {currentSelectedUser.rewards?.map((e: any, j) => (
                     <div className="badge" key={j}>
-                        <div className="open-dia" onClick={() => openBadgeModal(e)}>
+                        <div className="open-dia badge-shade" onClick={() => openBadgeModal(e)}>
                         <div className={'newbadge ' + e.icon}></div>
                         </div>
                     </div>
@@ -266,13 +262,7 @@ const Profile = () => {
                          onChange={(e) => {handleChange(e)}}
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="bio">Bio:</Label>
-                        <Input type="textarea" name="bio" id="bio"
-                        value={userMetaData.bio || ""}
-                        onChange={(e) => {handleChange(e)}}
-                        />
-                    </FormGroup>
+                   
                     <FormGroup tag="fieldset">
                       <h4 className="avatartitle">Avatar:</h4>
                         <div className="avatar-selector">

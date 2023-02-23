@@ -8,6 +8,7 @@ import nfggreen from "../../public/greendaddyface.jpeg"
 import nforange from "../../public/yellow-face.jpeg"
 import nFDBeat from "../../public/beatupdaddy.png"
 import hawk from "../../public/hawk.jpeg"
+import ronda from "../../public/ronda.png"
 
 interface AvatarProps {
     avatar?: string;
@@ -26,6 +27,7 @@ const Avatar = (props: AvatarProps) => {
         {props.avatar === "Francis" && <Image src={nforange} alt="Francis" className="avatar-img" />}
         {props.avatar === "nFDBeat" && <Image src={nFDBeat} alt="Francis" className="avatar-img" />}
         {props.avatar === "Hawk" && <Image src={hawk} alt="Hawk" className="avatar-img" />}
+        {props.avatar === "Ronda" && <Image src={ronda} alt="Ronda" className="avatar-img" />}
     </>
   );
 };
