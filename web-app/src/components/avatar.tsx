@@ -18,6 +18,7 @@ interface AvatarProps {
 const Avatar = (props: AvatarProps) => {
   return (
     <>
+        {props.avatar === undefined && <Gravatar email={props.address} className="avatar-img" />}
         {props.avatar === "Gravatar" && <Gravatar email={props.address} className="avatar-img" />}
         {props.avatar === "MonsterId" && <Gravatar default="monsterid" email={props.address} className="avatar-img" />}
         {props.avatar === "NFD1" && <Image src={nfdone} alt="NFD1" className="avatar-img" />}

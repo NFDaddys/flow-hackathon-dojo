@@ -11,6 +11,8 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import Image from 'next/image';
+import Logo from "../../public/snooplion.png"
   
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +25,7 @@ const Navigation = () => {
   return (
     <div className="nav-container">
       <Navbar color="dark" dark expand="md">
+        <Image src={Logo} alt="Logo" className="logo-img" />
         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>

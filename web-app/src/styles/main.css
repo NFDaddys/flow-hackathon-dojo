@@ -18,6 +18,9 @@ body {
     margin-top: -90px;
     padding-top: 0px;
 }
+.leado {
+    margin-top: 0px;
+}
 .profile-subhead {
     width: 100%;
     display: flex;
@@ -58,6 +61,10 @@ h4 {
     font-size: 62px;
     color: #5383ec;
 }
+.tard {
+    color: black;
+    font-size: 44px;
+}
 .usernam {
     font-family: 'Black Ops One', cursive !important;
     color: white;
@@ -67,7 +74,22 @@ h4 {
     line-height: 27px;
     padding-top: 11px;
 }
+.container-fluid {
+    justify-content: inherit !important;
+    overflow: hidden;
+    /* height: 75px; */
+    align-items: center;
+}
+.logo-img {
+    color: transparent;
+    height: 93px;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    margin-top: -10px;
+}
 .nav-item .nav-link, .navbar-nav .nav-link {
+    cursor: pointer;
     display: flex;
     align-items: center;
     margin-right: 12px;;
@@ -88,6 +110,8 @@ h4 {
 }
 .bg-dark {
     background-color: #111 !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .backstyle {
     box-sizing: border-box;
@@ -159,6 +183,14 @@ h4 {
     background: rgb(109,67,25);
 background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
 }
+.open-dia:nth-child(3) .container-lead, .open-dia:nth-child(6) .container-lead  {
+    background: linear-gradient(0deg, rgba(88,14,10,1) 14%, rgba(195,44,28,1) 91%) !important;
+}
+.open-dia:nth-child(4) .container-lead {
+    background: rgb(33,65,141);
+    background: linear-gradient(0deg, rgba(33,65,141,1) 14%, rgba(66,113,223,1) 91%);    
+}
+
 .container-lead .profile-avatar img {
     height: 77px;
     margin: 0;
@@ -204,6 +236,13 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     color: #5383ec;
     padding-top: 16px;
     padding-bottom: 16px;
+}
+.labp {
+    font-family: 'Black Ops One', cursive;
+    color: #111;
+    font-size: 19px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .newbadge {
     width: 104px;
@@ -260,6 +299,9 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     display: flex;
     width: 90%;
     padding-top: 20px;
+}
+.bg-dark {
+    background-color: #111 !important;
 }
 .beltin {
     padding-bottom: 13px;

@@ -74,7 +74,7 @@ const Leaderboard = () => {
         <div className="open-dia" key={i} onClick={() => openModal(d)}>
         {/* <div className="open-dia" key={i} onClick={() => setSelectedUser(d)}> */}
           <div className="container-lead" >
-            <div className="profile-avatar">
+            <div className="profile-avatar leado">
               <Avatar address={d.address} avatar={d.metaData?.avatar} />
             </div>
             {d.metaData?.userName ?
@@ -89,8 +89,8 @@ const Leaderboard = () => {
                   </div>
               }
               <div className="ldr-points">
-                <span className="pointtot">{d.totalPoints}</span>
-                <span className="pointlab">Points</span>
+                <span className="pointtot tard">{d.totalPoints}</span>
+                <span className="pointlab labp">Points</span>
               </div>
           </div>
         </div>
