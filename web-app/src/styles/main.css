@@ -370,6 +370,33 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     background-image: url("/valor-badge.png") !important;
     background-size: cover !important;
 }
+.lion2 {
+    background-image: url("/valor-badge2.png") !important;
+}
+.lion3 {
+    background-image: url("/valor-badge3.png") !important;
+}
+.lion4 {
+    background-image: url("/valor-badge4.png") !important;
+}
+.lion5 {
+    background-image: url("/valor-badge5.png") !important;
+}
+.lion6 {
+    background-image: url("/valor-badge6.png") !important;
+}
+.lion7 {
+    background-image: url("/valor-badge7.png") !important;
+}
+.lion8 {
+    background-image: url("/valor-badge8.png") !important;
+}
+.lion9 {
+    background-image: url("/valor-badge9.png") !important;
+}
+.lion10 {
+    background-image: url("/valor-badge10.png") !important;
+}
 .belt1, .belt2, .belt3, .belt4, .belt5, .belt6, .belt7, .belt8   {
     background-image: url("/belt.png") !important;
     background-size: cover !important;
