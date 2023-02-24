@@ -1,0 +1,32 @@
+{
+	"contracts": {
+		"Dojo": "./cadence/contracts/Dojo.cdc",
+		"NonFungibleToken": {
+		  "source": "./cadence/contracts/interfaces/NonFungibleToken.cdc",
+		  "aliases": {
+			"testnet": "0x631e88ae7f1d7c20"
+		  }
+		}
+	  },
+	"networks": {
+		"emulator": "127.0.0.1:3569",
+		"mainnet": "access.mainnet.nodes.onflow.org:9000",
+		"sandboxnet": "access.sandboxnet.nodes.onflow.org:9000",
+		"testnet": "access.devnet.nodes.onflow.org:9000"
+	},
+	"accounts": {
+		"emulator-account": {
+			"address": "f8d6e0586b0a20c7",
+			"key": "417c7785063a159a4d21dd14b9c8d296d9d61f19260de7f48642b37117c963f6"
+		},
+		"testnet": {
+			"address": "74225957ee4b7824",
+			"key": "3809df0523e049df4ca7ce558521354721dcab6255c7f818fb9632df4a197386"
+		}
+	},
+	"deployments": {
+		"testnet": {
+		  "testnet": ["Dojo"]
+		}
+	  }
+}
