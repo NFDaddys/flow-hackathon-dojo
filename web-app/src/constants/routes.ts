@@ -1,5 +1,5 @@
 const API_ROOT =
-  process.env.NEXT_PUBLIC_API_ROOT || 'https://valorpdsapp.web.app';
+  process.env.NEXT_PUBLIC_API_ROOT || 'https://valorpds.nfdaddys.tech/';
 
 const ROUTES = {
   // Frontend routes

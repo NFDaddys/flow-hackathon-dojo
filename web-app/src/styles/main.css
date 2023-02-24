@@ -81,10 +81,43 @@ h4 {
     line-height: 28px;
     padding-top: 10px;
 }
+.ldrpua {
+    padding-top: 21px;
+    padding-bottom: 15px;
+}
 .pointtot {
     font-family: 'Black Ops One', cursive;
     font-size: 62px;
     color: #5383ec;
+}
+.modslvl {
+    font-family: 'Black Ops One', cursive;
+    padding: 15px 0;
+    font-size: 30px;
+    line-height: 32px;
+}
+.level-lvl {
+    font-size: 21px;
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 3px;
+    font-weight: 700;
+}
+.level-desc {
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 14px;
+    font-size: 17px;
+    color: #bebebe;
+}
+.pencil {
+    padding-right: 4px;
+}
+.lastdate {
+    font-size: 20px;
+}
+.newbig {
+    width: 140px !important;
+    height: 140px  !important;
+    margin-bottom: 8px!important;
 }
 .tard {
     color: black;
@@ -166,6 +199,7 @@ h4 {
     width: 80%;
 }
 .refix {
+    
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     text-align: center;
@@ -182,11 +216,19 @@ h4 {
     max-height: calc(100vh - 48
     px);
     outline: 0;
-    border: 1px solid rgba(33,33,33,0.25);
+    /* border: 1px solid rgba(33,33,33,0.25); */
     z-index: 999;
     width: 380px;
     min-height: 384px;
     overflow-y: auto;
+    border: 3px solid #111;
+}
+.rizzow {
+    display: flex;
+    width: 100%;
+}
+.rizzow .p-tag {
+    flex: 1
 }
 .closebtn {
     position: absolute;
@@ -218,7 +260,39 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     background: rgb(33,65,141);
     background: linear-gradient(0deg, rgba(33,65,141,1) 14%, rgba(66,113,223,1) 91%);    
 }
-
+.ReactModal__Body--open {
+    height: 100vh;
+  overflow-y: hidden;
+}
+.flexholder h4 {
+    font-family: 'Black Ops One', cursive !important;
+}
+.point-holder  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.point-holder  .value {
+    font-family: 'Black Ops One', cursive !important;
+    color: #5383ec;
+    font-size: 32px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    line-height: 27px;
+    padding-top: 11px;
+}
+.modname {
+    margin-top: 4px;
+    padding-bottom: 0px;
+    margin-bottom: -2px;
+}
+.levler {
+    color: #ffff55;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
 .container-lead .profile-avatar img {
     height: 77px;
     margin: 0;
@@ -307,7 +381,10 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     padding-bottom: 0px;
     cursor: pointer;
     margin-bottom: 3px;
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ebebeb;
+    text-decoration: underline;
 }
 .levelpro {
     color: #ffff55;
@@ -480,6 +557,12 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     font-family: 'Black Ops One', cursive;
     text-transform: uppercase;
 }
+.cf {
+    top: 9%;
+}
+.cfs {
+    top: 4%;
+}
 .blue-but {
     background: linear-gradient(0deg,#133e7c,#0abdc6)!important;
     border-radius: 5px;
@@ -565,4 +648,8 @@ a {
 .silver {
     color: #6a8591;
     border: 1px solid #6a8591;
+}
+.lg-height img {
+    height: 135px;
+    width: auto;
 }

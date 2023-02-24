@@ -7,7 +7,7 @@ import Rewards from "../rewards.json";
 import Avatars from "../avatar.json";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faUnlock } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faUnlock, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { UserObject, Reward, InitReward, InitValue, MediaMetadata, InitUserMetaData } from "../constants/models";
 import Modal from 'react-modal';
 import React from "react";
@@ -25,12 +25,20 @@ const Profile = () => {
     const [currentBadgeInfo, setcurrentBadgeInfo] = useState<Reward>(InitReward);
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [badgeModalIsOpen, setBadgeModalIsOpen] = React.useState(false);
+    const [earnedWhat, setearnedWhat] = React.useState('Badge');
 
     const openModal = () => {
       setIsOpen(true);
     }
 
     const openBadgeModal = (e : any) => {
+      setearnedWhat('Belt')
+      setBadgeModalIsOpen(true);
+      badgeDetails(e);
+    }
+
+    const openBadgeModalDef = (e : any) => {
+      setearnedWhat('Badge')
       setBadgeModalIsOpen(true);
       badgeDetails(e);
     }
@@ -162,7 +170,7 @@ const Profile = () => {
                 <Avatar address={user.addr} avatar={userMetaData.avatar} />
             </div>
             <div className="open-dia edify" onClick={() => openModal()}>
-                <p className="edit-button">Edit Profile</p>
+                <p className="edit-button"><FontAwesomeIcon icon={faPencil} className="pencil" /> Edit </p>
             </div>
             {currentSelectedUser.metaData?.userName ?
                 <div>
@@ -182,8 +190,6 @@ const Profile = () => {
               <span className="pointlab">Points</span>
             </div>
             <ProgressBar className="progress-bar-hawk" completed={currentSelectedUser.checkins.length} customLabel=" " maxCompleted={maxLevel} />
-            
-            
             {/* <div>
                 <span>Twitter:</span>
                 <span>{currentSelectedUser.metaData?.twitter}</span>
@@ -216,7 +222,7 @@ const Profile = () => {
                 <span>Badges Earned:</span>
                 {currentSelectedUser.rewards?.map((e: any, j) => (
                     <div className="badge" key={j}>
-                        <div className="open-dia badge-shade" onClick={() => openBadgeModal(e)}>
+                        <div className="open-dia badge-shade" onClick={() => openBadgeModalDef(e)}>
                         <div className={'newbadge ' + e.icon}></div>
                         </div>
                     </div>
@@ -230,7 +236,7 @@ const Profile = () => {
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          className="refix"
+          className="refix cfs"
           contentLabel="Welcome"
         >
               <h3 className="claimh">Modify Profile</h3>
@@ -321,10 +327,9 @@ const Profile = () => {
               isOpen={badgeModalIsOpen}
               onAfterOpen={afterOpenModal}
               onRequestClose={closeModal}
-              className="refix"
+              className="refix cf"
               contentLabel="Welcome"
             >
-              <h3 className="claimh claimg">Badge Details</h3>
               <Button className="closebtn" onClick={closeModal}>
                 <FontAwesomeIcon icon={faClose} />
               </Button>
@@ -333,18 +338,15 @@ const Profile = () => {
                   <div className="imgholdy">
                     <div className={'leader-rank newbadge newbig ' + currentBadgeInfo.icon}></div>
                   </div>
-                  { currentBadgeInfo.level && currentBadgeInfo.level > 0 && 
                   <div className="holdertarsky modslvl">
+                    {currentBadgeInfo.name}
+                  </div> 
+                  { currentBadgeInfo.level && currentBadgeInfo.level > 0 && 
+                  <div className="level-lvl">
                     <span >Level {currentBadgeInfo.level} Reward</span>
                   </div>
-                  }
-                  <div className="holdertarsky">
-                    <span className="lab">Reward Name:</span>
-                    {currentBadgeInfo.name}
-                  </div>                 
-                
-                  <div className="holdertarsky">
-                    <span className="lab">Reward Earned:</span>
+                  } 
+                  <div className="level-desc">
                     {currentBadgeInfo.reward}
                   </div>
 
@@ -357,8 +359,8 @@ const Profile = () => {
                   {currentBadgeInfo.claimed &&
                     <div className="status-rew claimed">CLAIMED</div> 
                   }
-                  {!currentBadgeInfo.claimed &&
-                    <div className="status-rew activer">REDEEMABLE</div>
+                  {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
+                    <div className="status-rew activer blue-but">REDEEMABLE</div>
                   }
                </div>
               </div>

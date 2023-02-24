@@ -109,14 +109,14 @@ const Scan = () => {
         {activeQR === 0 &&
             <div onClick={goCheckIn}>
             <div className="qr-image" >
-              <QRCodeSVG size={400} includeMargin={true} fgColor="#111" bgColor="transparent" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}`} />
+              <QRCodeSVG size={400} includeMargin={true} fgColor="#111" bgColor="transparent" value={`https://valorpds.nfdaddys.tech/checkin?qr=${imageString}`} />
             </div>
           </div>
         }
         {activeQR >= 1 &&
             <div onClick={goCheckInTest}>
                 <div className="qr-image" >
-                <QRCodeSVG size={400} includeMargin={true} fgColor="#111" bgColor="transparent" value={`https://valorpdsapp.web.app/checkin?qr=${imageString}&test=${activeQR}`} />
+                <QRCodeSVG size={400} includeMargin={true} fgColor="#111" bgColor="transparent" value={`https://valorpds.nfdaddys.tech/checkin?qr=${imageString}&test=${activeQR}`} />
                 </div>
           </div>
         }

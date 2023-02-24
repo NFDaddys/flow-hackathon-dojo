@@ -101,30 +101,33 @@ const Leaderboard = () => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        className="refix"
+        className="refix cf"
         contentLabel="Welcome"
       >
       <div className="flexholder">
         <div className="gravhold">
-          <div className="avatar-image-container">
+          <div className="avatar-image-container lg-height">
             <Avatar address={selectedUser?.address} avatar={selectedUser?.metaData?.avatar} />
           </div>
-            <div className="leader-level levler">
-              <span className="level-lev">Level:</span>
-              <span>{selectedUser?.level}</span>
-              {!selectedUser.level &&<span>1</span>}
-            </div>
         </div>
         {selectedUser.metaData?.userName ?
             <div>
-                <h4>{selectedUser.metaData?.userName}</h4>
+                <h4 className="modname">{selectedUser.metaData?.userName}</h4>
             </div>
         :
             <div>
-                <h4>{truncateWallet(selectedUser.address)}</h4>
+                <h4 className="modname">{truncateWallet(selectedUser.address)}</h4>
             </div>
         }
-      </div>
+        <div className="leader-level levler">
+          <span className="level-lev">Level</span>
+          <span>{' '+ selectedUser?.level}</span>
+          {!selectedUser.level &&<span>1</span>}
+        </div>
+        <div className="ldr-points propoints ldrpua">
+          <span className="pointtot">{selectedUser.totalPoints}</span>
+          <span className="pointlab">Points</span>
+        </div>
       
 
       <Button className="closebtn" onClick={closeModal}>
@@ -133,28 +136,12 @@ const Leaderboard = () => {
       <div className="containment">
         <div className="childtarsky">
           <div className="rizzow">
-            <p className="p-tag minus-bot memsince">Member Since <br /><strong>{selectedUser?.membersince}</strong></p>
-            <p className="p-tag minus-bot plus lastdance">Last Checkin <br /><strong>{selectedUser?.lastcheckin}</strong></p>
-          </div>
-          <div className="rizzow">
-            
-            
-            <div className="point-holder">
-            <span className="value">{selectedUser.checkins.length > 0 ? selectedUser.totalPoints : 0}</span>
-            <span className="label">Points</span>
-          </div>
+            <p className="p-tag minus-bot memsince">Member Since <br /><strong className="lastdate">{selectedUser?.membersince}</strong></p>
+            <p className="p-tag minus-bot plus lastdance">Last Checkin <br /><strong className="lastdate">{selectedUser?.lastcheckin}</strong></p>
           </div>
           
-          
-          
-          
-          {/* <ProgressBar className="progress-bar-hawk" completed={tempUserDataCheckins.length} customLabel=" " maxCompleted={maxLevel} />
-          <p className="progress-line">{maxLevel - selectedUser.metaData.checkins.length} more points needed for Level {selectedUser?.level ? selectedUser?.level + 1 : 2}</p> */}
-          <div className="stat-holders">
-            <p className="p-tag">Checkins <br /> <strong>{selectedUser?.checkins.length}</strong></p>
-            <p className="p-tag bordera">Level <br /> <strong>{selectedUser?.level ? selectedUser?.level : 1}</strong></p>
-            <p className="p-tag">Rewards <br /><strong>{selectedUser?.rewards?.length}</strong></p>
           </div>
+
         </div>
       </div>
     
