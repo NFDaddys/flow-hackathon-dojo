@@ -3,7 +3,6 @@ import { useWeb3Context } from '../flow/web3';
 import { db } from '../firebase';
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import moment from 'moment';
-import Image from 'next/image';
 import Rewards from "../rewards.json";
 import Avatars from "../avatar.json";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';

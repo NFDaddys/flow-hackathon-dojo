@@ -227,7 +227,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
       <button className="clicklink blue-but" onClick={connect}>Log-in</button>
       :
         <>
-          <div className="profile-header">
+          <div className="profile-header checkpad">
             <div className="profile-avatar">
               <Avatar address={currentSelectedUser.address} avatar={currentSelectedUser.metaData?.avatar} />
             </div>
@@ -241,9 +241,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
               </div>
             }
             {!successCheckIn && !dupeCheckin &&  <button className="clicklink blue-but" onClick={handleCheckin}>Check In</button>}
-          </div>
-          {/* {<div onClick={logout}>Logout</div>} */}
-          {dupeCheckin && 
+            {dupeCheckin && 
             <div className="centering">
             <div className="success-msg">
               <span >You already checked in today!  - {today}</span>
@@ -263,6 +261,9 @@ import useWindowSize from 'react-use/lib/useWindowSize'
               <button className="clicklink blue-but" onClick={navigteToProfile}>View Your Profile</button>
             </>
           }
+          </div>
+          {/* {<div onClick={logout}>Logout</div>} */}
+          
           
         </>
       }

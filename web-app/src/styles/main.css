@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=BenchNine:wght@300;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
 body {
     background-image: url("/ngd.png") !important;
@@ -43,6 +44,30 @@ body {
     border: 3px solid #111;
 
 }
+.hour-res {
+    display: flex;
+    width: 100%;
+    padding: 5px 5%;
+}
+.hour-list {
+    font-family: 'Lato', sans-serif;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 19px;
+    letter-spacing: 1px;
+    line-height: 24px;
+}
+.res-head {
+    margin-top: 23px;
+}
+.burst-holder {
+    flex: .4 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 11px;
+}
 h4 {
     font-family: "Rubik",sans-serif !important;
     font-size: 2.5rem;
@@ -73,6 +98,9 @@ h4 {
     margin-bottom: 0px;
     line-height: 27px;
     padding-top: 11px;
+}
+.checkpad {
+    padding-top: 40px;
 }
 .container-fluid {
     justify-content: inherit !important;
@@ -186,7 +214,7 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
 .open-dia:nth-child(3) .container-lead, .open-dia:nth-child(6) .container-lead  {
     background: linear-gradient(0deg, rgba(88,14,10,1) 14%, rgba(195,44,28,1) 91%) !important;
 }
-.open-dia:nth-child(4) .container-lead {
+.open-dia:nth-child(4) .container-lead, .open-dia:nth-child(7) .container-lead, .open-dia:nth-child(10) .container-lead {
     background: rgb(33,65,141);
     background: linear-gradient(0deg, rgba(33,65,141,1) 14%, rgba(66,113,223,1) 91%);    
 }
@@ -300,8 +328,9 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     width: 90%;
     padding-top: 20px;
 }
-.bg-dark {
+.cbg-dark {
     background-color: #111 !important;
+    padding: 0 10px !important;
 }
 .beltin {
     padding-bottom: 13px;
@@ -356,6 +385,72 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     font-size: 20px;
     font-weight: 300;
 }
+.home-top-container {
+    font-family: 'Black Ops One', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.faq-section {
+    padding: 4px 4% 40px 4%;
+}
+.accordion {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.accordion__item {
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 10px 16px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    width: 92%;
+}
+.smalls {
+    font-size: 34px;
+}
+.accordion__panel{
+    font-size: 18px;
+    padding-top: 11px;
+    padding-bottom: 5px;
+    color: #bebebebe;
+}
+.home-link {
+    color: #ff0 !important;
+    text-align: center;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    line-height: 30px;
+    cursor: pointer;
+    padding-top: 2px;
+}
+.home-title {
+    text-transform: uppercase;
+    font-size: 44px;
+    text-align: center;
+    padding-bottom: 3px;
+    margin-bottom: 0px;
+    color: #fff;
+    line-height: 48px;
+}
+.resouce-title {
+    padding: 11px 0;
+    color: #aeaeae;
+    font-family: 'Black Ops One', cursive;
+    text-transform: uppercase;
+    font-size: 44px;
+    text-align: center;
+    padding-bottom: 3px;
+    margin-bottom: 0px;
+}
 .success-msg {
     border: 0 solid #0abdc6;
     background-color: initial;
@@ -365,7 +460,9 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     text-align:center;
     display: flex;
     flex-direction: column;
+    padding-right: 10px;
     padding-bottom: 14px;
+    padding-left: 10px;
 }
 .sm-date {
     font-size: 16px;
@@ -424,3 +521,48 @@ a {
         justify-content: right;
     }
   }
+.extra-p {
+    margin-top: 30px !important;
+}
+.video-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    margin-bottom: 13px;
+    margin-top: 13px;
+}
+.burst-ico {
+    height: 59px;
+    padding-right: 6px;
+    color: #ebebebeb;
+}
+.video-cat {
+    background: rgb(10,10,10);
+    background: linear-gradient(0deg, rgba(10,10,10,1) 10%, rgba(76,76,76,1) 85%);
+    border: 1px solid #cf0011;
+    color: #cf0011;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 28px;
+    margin: 10px 0;
+    width: 84%;
+    font-family: 'Black Ops One', cursive;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.goldup {
+    color: #ff8d27;
+    border: 1px solid #ff8d27;
+}
+.silver {
+    color: #6a8591;
+    border: 1px solid #6a8591;
+}

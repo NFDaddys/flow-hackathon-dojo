@@ -99,7 +99,7 @@ const Scan = () => {
             Select QR
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem active onClick={() => handleSelection(0)}>Course Checkin</DropdownItem>
+              <DropdownItem active onClick={() => handleSelection(0)}>Class Checkin</DropdownItem>
               {BeltRewards.map((e: any, j) => (
                 <DropdownItem key={e.icon+"-"+j} onClick={() => handleSelection(e.level)}>{e.title}</DropdownItem>
               ))}

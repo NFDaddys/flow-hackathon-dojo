@@ -24,7 +24,7 @@ const Navigation = () => {
 
   return (
     <div className="nav-container">
-      <Navbar color="dark" dark expand="md">
+      <Navbar className="cbg-dark" dark expand="md">
         <Image src={Logo} alt="Logo" className="logo-img" />
         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
           <Collapse isOpen={isOpen} navbar>

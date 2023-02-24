@@ -1,0 +1,18 @@
+[
+    {
+        "faqTitle": "Why are we using this app for Valor Combat Academy?",
+        "faqContent": "This App is using blockchain technology to keep all of your progress on chain which is immutable meaning all your accomplishments stay with you forever.  Flexing your progress as you earn rewards to solidify your position here at Valor Combat Academy."
+    },
+    {
+        "faqTitle": "What is the blockchain?",
+        "faqContent": "A blockchain is a distributed ledger with growing lists of records (blocks) that are securely linked together via cryptographic hashes. Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data (generally represented as a Merkle tree, where data nodes are represented by leaves)"
+    },
+    {
+        "faqTitle": "What is a Crypto Wallet?",
+        "faqContent": "The Dapper Crypto Wallet can now hold FLOW tokens—the native currency of the Flow network. FLOW is designed as a payment method as well as a long-term reserve asset for the entire Flow economy."
+    },
+    {
+        "faqTitle": "How do I load my Dapper Cryptowallet with FLOW CryptoCurrency?",
+        "faqContent": "Using a crypto exchange like COINBASE to buy FLOW then send the FLOW to your Dapper Wallet using the DAPPER public wallet address.  No worries, we have all the tutorials in the app."
+    }
+]
