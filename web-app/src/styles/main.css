@@ -222,6 +222,7 @@ h4 {
     min-height: 384px;
     overflow-y: auto;
     border: 3px solid #111;
+    max-height: 90vh;
 }
 .rizzow {
     display: flex;
@@ -253,10 +254,10 @@ h4 {
     background: rgb(109,67,25);
 background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
 }
-.open-dia:nth-child(3) .container-lead, .open-dia:nth-child(6) .container-lead  {
+.open-dia:nth-child(3) .container-lead, .open-dia:nth-child(6) .container-lead, .open-dia:nth-child(9) .container-lead, .open-dia:nth-child(12) .container-lead  {
     background: linear-gradient(0deg, rgba(88,14,10,1) 14%, rgba(195,44,28,1) 91%) !important;
 }
-.open-dia:nth-child(4) .container-lead, .open-dia:nth-child(7) .container-lead, .open-dia:nth-child(10) .container-lead {
+.open-dia:nth-child(4) .container-lead, .open-dia:nth-child(7) .container-lead, .open-dia:nth-child(10) .container-lead, .open-dia:nth-child(13) .container-lead {
     background: rgb(33,65,141);
     background: linear-gradient(0deg, rgba(33,65,141,1) 14%, rgba(66,113,223,1) 91%);    
 }
@@ -307,7 +308,7 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    flex: 1;
+    flex: .7;
 }
 .avatar-image-container img {
     margin-bottom: 0px !important;
@@ -353,6 +354,11 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     border: 0px;
     padding: 0;
     background-color: transparent;
+}
+.stba {
+    width: 72px;
+    height: 72px;
+    cursor: auto;
 }
 .ReactModal__Overlay {
     z-index: 9999999 !important;
@@ -447,6 +453,11 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     font-family: 'Black Ops One', cursive;
     font-size: 24px;
 }
+.small-top {
+    padding-top: 16px;
+    border-top: 1px solid #666;
+    padding-bottom: 16px;
+}
 .date-labels {
     font-size: 14px;
 }
@@ -455,22 +466,45 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     font-size: 12px;
     padding-top: 4px;
 }
+.claimh {
+    font-family: 'Black Ops One', cursive !important;
+    font-size: 26px;
+}
 .pro-name {
     font-family: 'Black Ops One', cursive !important;
     padding-bottom: 0px;
     margin-bottom: -6px;
-    margin-top: 9px;
+    margin-top: 4px;
+    font-size: 38px;
 }
 .qr-image {
     text-align: center;
 }
 .avatar-list {
-    max-height: 140px;
+    max-height: 160px;
     overflow-y: auto;
     flex: 1;
 }
+.form-label {
+    font-family: 'Black Ops One', cursive !important;
+    font-size: 16px;
+}
 .avatartitle {
     padding-top: 10px;
+    font-family: 'Black Ops One', cursive !important;
+    font-size: 16px;
+}
+.form-check {
+    position: relative;
+    display: block;
+    padding: 3px 0;
+    padding-left: 1.25rem;
+    cursor: pointer;
+}
+.form-check-label {
+    font-size: 18px;
+    padding: 4px 0px;
+    font-family: 'Black Ops One', cursive !important;
 }
 .nav-ico {
     height: 19px;
@@ -599,6 +633,7 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     color: #fff;
     width: 90%!important;
     margin: 14px 0;
+    cursor: pointer;
     font-size: 24px;
 }
 .navbar-dark .navbar-toggler {
@@ -606,6 +641,7 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
 }
 .seper {
     padding: 0 12px;
+    color: white;
 }
 .powered {
     margin-bottom: 20px;

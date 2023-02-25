@@ -13,6 +13,8 @@ import Modal from 'react-modal';
 import React from "react";
 import Avatar from '@/components/avatar';
 import ProgressBar from "@ramonak/react-progress-bar";
+import getTotalSupply from '../cadence/scripts/getTotalSupply';
+import * as fcl from "@onflow/fcl";
 
 Modal.setAppElement('#__next');
 
@@ -156,6 +158,14 @@ const Profile = () => {
             getUser();
         }
     }, [user, executeScript]);
+
+  const sendQuery = async () => {
+    const res: any = await executeScript(
+      getTotalSupply,
+    );
+
+    console.log('total supply res ', res);
+  }
 
   return (
     <div className="flex-holder">
@@ -360,7 +370,7 @@ const Profile = () => {
                     <div className="status-rew claimed">CLAIMED</div> 
                   }
                   {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
-                    <div className="status-rew activer blue-but">REDEEMABLE</div>
+                    <div className="status-rew activer blue-but" onClick={() => sendQuery()}>REDEEM</div>
                   }
                </div>
               </div>

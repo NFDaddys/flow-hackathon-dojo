@@ -88,20 +88,20 @@ export const Web3ContextProvider = ({
       addresses,
     } = NETWORK;
     const iconUrl = window.location.origin + '/images/wallet-icon.png';
-    const appTitle = process.env.NEXT_PUBLIC_APP_NAME || 'Valoropds';
+    const appTitle = process.env.NEXT_PUBLIC_APP_NAME || 'Valoropds Flow Dojo';
 
     fcl.config({
       'app.detail.title': appTitle,
       'app.detail.icon': iconUrl,
-      'accessNode.api': accessApi, // connect to Flow
+      "accessNode.api": "https://rest-testnet.onflow.org",
+      // 'accessNode.api': accessApi, // connect to Flow
       'flow.network': flowNetwork,
+      // 'flow.network': 'testnet',
       'discovery.wallet': walletDiscovery, // use wallets on public discovery
       'discovery.authn.endpoint': walletDiscoveryApi, // public discovery api endpoint
       'discovery.authn.include': walletDiscoveryInclude, // opt-in wallets
-      '0xFungibleToken': addresses.FungibleToken,
-      '0xFlowToken': addresses.FlowToken,
       '0xNonFungibleToken': addresses.NonFungibleToken,
-      '0xMetadataViews': addresses.MetadataViews,
+      '0xDojo': '0x74225957ee4b7824',
     });
 
     if (!client) {
@@ -152,6 +152,8 @@ export const Web3ContextProvider = ({
   const executeScript = useCallback(
     async (cadence: string, args: any = () => []) => {
       try {
+        console.log('in here steve ,', cadence);
+        console.log('in here args ,', args);
         return await fcl.query({
           cadence: cadence,
           args,

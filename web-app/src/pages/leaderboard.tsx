@@ -62,7 +62,6 @@ const Leaderboard = () => {
             tempTokenHolderArray.push(item);
           });
           tempTokenHolderArray.sort((a: { totalPoints: number; },b: { totalPoints: number; }) => (a.totalPoints < b.totalPoints) ? 1 : ((b.totalPoints < a.totalPoints) ? -1 : 0));
-          console.log('tempTokenHolderArray ', tempTokenHolderArray);
           setLeaderBoard(tempTokenHolderArray);
         });
       };
@@ -143,6 +142,28 @@ const Leaderboard = () => {
           </div>
 
         </div>
+        {selectedUser.testsRewards && selectedUser.testsRewards?.length > 0  && 
+          <div className="belts-earned small-top">
+            <span>Belts Earned:</span>
+            {selectedUser.testsRewards?.map((e: any, j) => (
+                <div className="badge" key={j}>
+                    <div className="open-dia badge-shade">
+                    <div className={'newbadge stba ' + e.icon}></div>
+                    </div>
+                </div>
+            ))}
+        </div>
+            }
+            <div className="belts-earned beltin small-top">
+                <span>Badges Earned:</span>
+                {selectedUser.rewards?.map((e: any, j) => (
+                    <div className="badge" key={j}>
+                        <div className="open-dia badge-shade">
+                        <div className={'newbadge stba ' + e.icon}></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
       </div>
     
       </Modal>

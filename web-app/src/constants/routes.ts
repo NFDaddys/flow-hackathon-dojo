@@ -8,6 +8,7 @@ const ROUTES = {
   SCAN: '/scan',
   LEADERBOARD: '/leaderboard',
   PROFILE: '/profile',
+  CONNECT: '/connect',
   
   // API routes
   API_SIGN_AS_MINTER: `${API_ROOT}/api/signAsMinter`,
