@@ -72,7 +72,7 @@ pub contract Dojo: NonFungibleToken {
 
   pub resource Minter {
 
-    pub fun createNFT(ame: String, description: String, ipfsURI: String): @NFT {
+    pub fun createNFT(name: String, description: String, ipfsURI: String): @NFT {
       var newDojoNFT <- create NFT(_initId: Dojo.totalSupply, _Name: name, _Desciption: description, _ipfsURI: ipfsURI)
       Dojo.totalSupply = Dojo.totalSupply + UInt64(1)
       return <- newDojoNFT
