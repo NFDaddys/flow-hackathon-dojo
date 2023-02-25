@@ -3,9 +3,6 @@ import NonFungibleToken from "./interfaces/NonFungibleToken.cdc"
 pub contract Dojo: NonFungibleToken {
   pub var totalSupply: UInt64
 
-  pub let CollectionPublicPath: PublicPath
-  pub let CollectionStoragePath: StoragePath
-
   pub event ContractInitialized()
   pub event Withdraw(id: UInt64, from: Address?)
   pub event Deposit(id: UInt64, to: Address?)
@@ -75,7 +72,7 @@ pub contract Dojo: NonFungibleToken {
 
   pub resource Minter {
 
-    pub fun createNFT(id: UInt64, name: String, description: String, ipfsURI: String): @NFT {
+    pub fun createNFT(ame: String, description: String, ipfsURI: String): @NFT {
       var newDojoNFT <- create NFT(_initId: Dojo.totalSupply, _Name: name, _Desciption: description, _ipfsURI: ipfsURI)
       Dojo.totalSupply = Dojo.totalSupply + UInt64(1)
       return <- newDojoNFT
@@ -89,10 +86,7 @@ pub contract Dojo: NonFungibleToken {
 
   init() {
     self.totalSupply = UInt64(1)
-    self.CollectionPublicPath = /public/DojoCollection
-    self.CollectionStoragePath = /storage/DojoCollection 
-
-    self.account.save(<- create Minter(), to: /storage/DojoMinter)
     emit ContractInitialized()
+    self.account.save(<- create Minter(), to: /storage/DojoMinter)
   }
 }
