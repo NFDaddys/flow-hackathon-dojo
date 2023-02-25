@@ -12,7 +12,7 @@ transaction(recipient: Address, name: String, description: String, url: String) 
                                   ?? panic("The recipient does not have a Collection.")
 
     // mint the NFT 
-    let nft <- minter.createNFT(name, description, url)
+    let nft <- minter.createNFT(name: name, description: description, ipfsURI: url)
 
     // deposit the NFT in the recipient's Collection
     recipientsCollection.deposit(token: <- nft)
