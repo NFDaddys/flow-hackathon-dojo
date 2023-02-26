@@ -485,6 +485,9 @@ background: linear-gradient(0deg, rgba(109,67,25,1) 0%, rgba(226,135,52,1) 67%);
     overflow-y: auto;
     flex: 1;
 }
+.belt-listing {
+    display: flex;
+}
 .form-label {
     font-family: 'Black Ops One', cursive !important;
     font-size: 16px;

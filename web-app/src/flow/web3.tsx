@@ -11,7 +11,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { init } from "@onflow/fcl-wc"
+// import { init } from "@onflow/fcl-wc" 
 
 interface IWeb3Context {
   connect: () => void;
@@ -55,28 +55,28 @@ export const Web3ContextProvider = ({
   const [txId, setTxId] = useState(null);
   const [client, setClient] = useState(null);
 
-  const wcSetup = useCallback(async (appTitle: string, iconUrl: string) => {
-    try {
-      const DEFAULT_APP_METADATA = {
-        name: appTitle,
-        description: appTitle,
-        url: window.location.origin,
-        icons: [iconUrl]
-      }
+  // const wcSetup = useCallback(async (appTitle: string, iconUrl: string) => {
+  //   try {
+  //     const DEFAULT_APP_METADATA = {
+  //       name: appTitle,
+  //       description: appTitle,
+  //       url: window.location.origin,
+  //       icons: [iconUrl]
+  //     }
 
-      const { FclWcServicePlugin, client } = await init({
-        projectId: '12ed93a2aae83134c4c8473ca97d9399', // required
-        metadata: DEFAULT_APP_METADATA, // optional
-        includeBaseWC: true, // optional, default: false
-      })
+  //     const { FclWcServicePlugin, client } = await init({
+  //       projectId: '12ed93a2aae83134c4c8473ca97d9399', // required
+  //       metadata: DEFAULT_APP_METADATA, // optional
+  //       includeBaseWC: true, // optional, default: false
+  //     })
 
-      setClient(client)
-      fcl.pluginRegistry.add(FclWcServicePlugin)
+  //     setClient(client)
+  //     fcl.pluginRegistry.add(FclWcServicePlugin)
 
-    } catch (e) {
-      throw e
-    }
-  }, [])
+  //   } catch (e) {
+  //     throw e
+  //   }
+  // }, [])
 
   useEffect(() => {
     const {
@@ -101,12 +101,12 @@ export const Web3ContextProvider = ({
       'discovery.authn.endpoint': walletDiscoveryApi, // public discovery api endpoint
       'discovery.authn.include': walletDiscoveryInclude, // opt-in wallets
       '0xNonFungibleToken': addresses.NonFungibleToken,
-      '0xDojo': '0x74225957ee4b7824',
+      '0xDojo': '0xb8564bff2e62329c',
     });
 
-    if (!client) {
-      wcSetup(appTitle, iconUrl)
-    }
+    // if (!client) {
+    //   wcSetup(appTitle, iconUrl)
+    // }
   }, []);
 
   useEffect(() => fcl.currentUser.subscribe(setUser), []);

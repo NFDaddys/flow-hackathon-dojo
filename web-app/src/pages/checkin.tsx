@@ -108,7 +108,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
   }
 
   const checkRewardStatus = async () => {
-    const prevEarnedRewards : Reward[] = currentSelectedUser.rewards !== undefined ? currentSelectedUser.rewards : [];
+    const prevEarnedRewards : Reward[] = currentSelectedUser.rewards !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.rewards)) : [];
     let currentRewards : Reward[] = [];   
     let currentLevel = 0;
     console.log('is this undefined? ', currentSelectedUser.rewards);
@@ -175,15 +175,20 @@ import useWindowSize from 'react-use/lib/useWindowSize'
   const saveTestResults = async (testNumber?: number) => {
     let tempTests : any;
     let tempTestRewards : any;
+    console.log('currentSelectedUser.testRewards ', currentSelectedUser?.testRewards);
     const levelnum = testNumber !== undefined ? testNumber-1 : 0;
-    currentSelectedUser.tests !== undefined ? tempTests = currentSelectedUser.tests : tempTests = [];
-    currentSelectedUser.testsRewards !== undefined ? tempTestRewards = currentSelectedUser.testsRewards : tempTestRewards = [];
+    tempTests = currentSelectedUser.tests !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.tests)) : [];
+    tempTestRewards = currentSelectedUser.testRewards !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.testRewards)) : [];
     const nowTime = moment().format();
+    console.log('tempTestRewards ', tempTestRewards);
+
     tempTests.push({date: nowTime, test: testNumber});
     tempTestRewards.push(BeltRewards[levelnum]);
+    console.log('BeltRewards[levelnum]', BeltRewards[levelnum]);
+    console.log('tempTestRewards ', tempTestRewards);
     updateDoc(doc(db, "members", user.addr), {
       tests: tempTests,
-      testsRewards: tempTestRewards
+      testRewards: tempTestRewards
     })
     .then((result) => {
       console.log('added test results');
@@ -206,6 +211,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
         rewards: tempUserData.rewards,
         tests: tempUserData.tests,
         metaData: tempUserData.metaData,
+        testRewards: tempUserData.testRewards,
       }
       setcurrentSelectedUser(formedUser);
     } else {

@@ -142,10 +142,10 @@ const Leaderboard = () => {
           </div>
 
         </div>
-        {selectedUser.testsRewards && selectedUser.testsRewards?.length > 0  && 
+        {selectedUser.testRewards && selectedUser.testRewards?.length > 0  && 
           <div className="belts-earned small-top">
             <span>Belts Earned:</span>
-            {selectedUser.testsRewards?.map((e: any, j) => (
+            {selectedUser.testRewards?.map((e: any, j) => (
                 <div className="badge" key={j}>
                     <div className="open-dia badge-shade">
                     <div className={'newbadge stba ' + e.icon}></div>

@@ -14,7 +14,7 @@ export default function Connect() {
   const sendQuery = async () => {
     const profile = await fcl.query({
       cadence: `
-        import Dojo from 0x74225957ee4b7824
+        import Dojo from 0xb8564bff2e62329c
 
         pub fun main(): UInt64 {
             return Dojo.totalSupply

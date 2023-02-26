@@ -9,6 +9,7 @@ export interface Reward {
     rid: 0,
     type: string 
     pointTotal?: number;
+    title?: any;
 }
 
 export interface MediaMetadata {
@@ -30,7 +31,7 @@ export interface UserObject {
   rewards?: [];
   metaData?: MediaMetadata;
   tests: [];
-  testsRewards?: [];
+  testRewards?: [];
 }
 
 export const InitUserMetaData : MediaMetadata = {

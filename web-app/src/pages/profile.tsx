@@ -14,13 +14,17 @@ import React from "react";
 import Avatar from '@/components/avatar';
 import ProgressBar from "@ramonak/react-progress-bar";
 import getTotalSupply from '../cadence/scripts/getTotalSupply';
+import mintDojoNFT from '../cadence/transactions/mintDojoNFT';
+import initializeAccount from '../cadence/transactions/initializeAccount';
 import * as fcl from "@onflow/fcl";
+import { TxnStatus } from '@/utils/utils';
+import minterAuthz from '@/utils/minterAuthz';
 
 Modal.setAppElement('#__next');
 
 const Profile = () => {
     const [currentSelectedUser, setcurrentSelectedUser] = useState(InitValue);
-    const { connect, user, executeScript } = useWeb3Context();
+    const { executeTransaction, connect, user, executeScript } = useWeb3Context();
     const [ userMetaData, setUserMetaData] = useState<MediaMetadata>(InitUserMetaData);
     const [ userMetaDataOriginal, setUserMetaDataOriginal] = useState<MediaMetadata>(InitUserMetaData);
     const [maxLevel, setmaxLevel] = useState(0);
@@ -28,7 +32,13 @@ const Profile = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [badgeModalIsOpen, setBadgeModalIsOpen] = React.useState(false);
     const [earnedWhat, setearnedWhat] = React.useState('Badge');
+    const beltPrice = '0.0';
 
+    const [signerAccount, setSignerAccount] = useState<any>({});
+    const [isMintInProgress, setIsMintInProgress] = useState<boolean>(false);
+    const [txId, setTxId] = useState('');
+    const [txStatus, setTxStatus] = useState<TxnStatus>();
+  
     const openModal = () => {
       setIsOpen(true);
     }
@@ -75,7 +85,6 @@ const Profile = () => {
         closeModal();
     }
 
-    
     const getUser = async () => {
         let q;
         const docRef = doc(db, "members", user.addr);
@@ -96,7 +105,7 @@ const Profile = () => {
             rewards: tempUserData.rewards,
             metaData: tempUserData.metaData,
             level: tempUserData.level,
-            testsRewards: tempUserData.testsRewards,
+            testRewards: tempUserData.testRewards,
             tests: tempUserData.tests
           }
           if(tempUserData.metaData !== undefined) {
@@ -159,13 +168,69 @@ const Profile = () => {
         }
     }, [user, executeScript]);
 
+    useEffect(() => {
+      const singingShit = async () => {
+        console.log('in here right');
+        const steve = await fcl.account('0xb8564bff2e62329c');
+        setSignerAccount(steve)
+      }
+      singingShit();      
+  }, []);
+
+
+
+    
+
+    // Subscribe to tx returned from /api/signAsMinter
+    useEffect(() => {
+      if (txId) {
+        fcl.tx(txId).subscribe(setTxStatus);
+      }
+    }, [txId]);
+
   const sendQuery = async () => {
     const res: any = await executeScript(
       getTotalSupply,
     );
-
     console.log('total supply res ', res);
   }
+
+  const handleInit = async () => {
+    await executeTransaction(initializeAccount, () => [], {
+      limit: 9999,
+    });
+  };
+
+  
+  const handleClickMint = async () => {
+    // console.log('signerAccount ', signerAccount);
+    console.log('fcl.authz  ', fcl.authz);
+    console.log('user.addr ', fcl.currentUser);
+    console.log('currentBadgeInfo.title ', currentBadgeInfo.title);
+    console.log('currentBadgeInfo.reward ', currentBadgeInfo.reward);
+      setIsMintInProgress(true);
+      try {
+        const txId = await fcl.mutate({
+          cadence: mintDojoNFT,
+          args: (arg: any, t: any) => [
+            arg(user.addr, t.Address),
+            arg(currentBadgeInfo.title, t.String),
+            arg(currentBadgeInfo.reward, t.String),
+            arg('test-Silver', t.String),
+          ],
+          proposer: fcl.authz,
+          payer: fcl.authz,
+          authorizations: [fcl.authz]
+        });
+  
+        setTxId(txId);
+        console.log('we made it through');
+      } catch (error) {
+        console.error(error);
+  
+        setIsMintInProgress(false);
+      }
+    };
 
   return (
     <div className="flex-holder">
@@ -215,28 +280,32 @@ const Profile = () => {
               </div>
             </div>
             
-            {currentSelectedUser.testsRewards && currentSelectedUser.testsRewards?.length > 0  && 
+            {currentSelectedUser.testRewards && currentSelectedUser.testRewards?.length > 0  && 
               <div className="belts-earned">
                 <span>Belts Earned:</span>
-                {currentSelectedUser.testsRewards?.map((e: any, j) => (
-                    <div className="badge" key={j}>
-                        <div className="open-dia badge-shade" onClick={() => openBadgeModal(e)}>
-                        <div className={'newbadge ' + e.icon}></div>
-                        </div>
-                    </div>
-                ))}
+                <div className="belt-listing">
+                  {currentSelectedUser.testRewards?.map((e: any, j) => (
+                      <div className="badge" key={j}>
+                          <div className="open-dia badge-shade" onClick={() => openBadgeModal(e)}>
+                          <div className={'newbadge ' + e.icon}></div>
+                          </div>
+                      </div>
+                  ))}
+                </div>
             </div>
             }
             
             <div className="belts-earned beltin">
                 <span>Badges Earned:</span>
-                {currentSelectedUser.rewards?.map((e: any, j) => (
-                    <div className="badge" key={j}>
-                        <div className="open-dia badge-shade" onClick={() => openBadgeModalDef(e)}>
-                        <div className={'newbadge ' + e.icon}></div>
-                        </div>
-                    </div>
-                ))}
+                <div className="belt-listing">
+                  {currentSelectedUser.rewards?.map((e: any, j) => (
+                      <div className="badge" key={j}>
+                          <div className="open-dia badge-shade" onClick={() => openBadgeModalDef(e)}>
+                          <div className={'newbadge ' + e.icon}></div>
+                          </div>
+                      </div>
+                  ))}
+                </div>
             </div>
         </div>
         }
@@ -370,7 +439,11 @@ const Profile = () => {
                     <div className="status-rew claimed">CLAIMED</div> 
                   }
                   {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
-                    <div className="status-rew activer blue-but" onClick={() => sendQuery()}>REDEEM</div>
+                    <>
+                      <div className="status-rew activer blue-but" onClick={() => handleInit()}>INIT ACOUNT</div>
+                      <div className="status-rew activer blue-but" onClick={() => handleClickMint()}>MINT</div>
+                      
+                    </>
                   }
                </div>
               </div>
