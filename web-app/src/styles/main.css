@@ -752,3 +752,12 @@ a {
     left: 1px;
     font-size: 14px;
 }
+.success-mint {
+    font-family: 'Black Ops One', cursive !important;
+    font-size: 18px;
+    color: #5383ec;
+}
+.success-mint strong {
+    text-transform: uppercase;
+    color: #ff0;
+}

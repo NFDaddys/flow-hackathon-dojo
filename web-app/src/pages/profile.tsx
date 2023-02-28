@@ -241,14 +241,6 @@ const Profile = () => {
   };
 
   return (
-    <>
-    {mintComplete && 
-        <Confetti
-          width={width}
-          height={height}
-          numberOfPieces={60}
-        />
-      }
     <div className="flex-holder">
       <h1 className="title-header">Profile</h1>
    {!user.loggedIn ? 
@@ -426,6 +418,13 @@ const Profile = () => {
           className="refix cf"
           contentLabel="Welcome"
         >
+           {mintComplete && 
+            <Confetti
+              width={350}
+              height={250}
+              numberOfPieces={60}
+            />
+          }
           <Button className="closebtn" onClick={closeModal}>
             <FontAwesomeIcon icon={faClose} />
           </Button>
@@ -464,7 +463,7 @@ const Profile = () => {
                 </>
               }
               {mintComplete && 
-                <div className="success-mint">Congratulations! You minted your belt on the FLOW block chain!</div>
+                <div className="success-mint"><strong className="congrats">Congratulations!</strong><br />You minted your belt on the FLOW block chain!</div>
               }
               <TwitterShareButton className="social-share" hashtags={['valorpds', 'bjj', 'flowdojo']} url="https://valorpdsapp.web.app/" title={'I just earned the "' + currentBadgeInfo.name + '" reward! '}>
                 <div className="share-twitty">Share on Twitter <TwitterIcon className="twitty" size={30} round={true} /></div>   
@@ -474,7 +473,6 @@ const Profile = () => {
         
         </Modal>
     </div>
-    </>
   );
 };
 
