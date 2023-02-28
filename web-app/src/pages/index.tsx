@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faClose } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
   AccordionItem,
@@ -7,9 +7,33 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
+import React from "react";
+import Modal from 'react-modal';
 import Faq from "../faq.json";
+import { Button } from 'reactstrap';
+import YoutubeEmbed from "../components/youtube";
+
+Modal.setAppElement('#__next');
 
 const Home = () => {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [currentVideo, setCurrentVideo] = React.useState('');
+  const [currentVidType, setCurrentVidType] = React.useState('');
+
+  const afterOpenModal = () => {
+
+  }
+
+  const openModal = (belt: string, name: string) => {
+    setCurrentVideo(belt);
+    setCurrentVidType(name);
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   return (
      <div className="flex-holder">
       <h1 className="title-header">Get Ready!</h1>
@@ -34,13 +58,13 @@ const Home = () => {
             <div className="profile-subhead">
               <h3 className="resouce-title">BJJ Videos</h3>
             </div>
-            <div className="video-cat">
+            <div className="video-cat" onClick={() => openModal('XOCzuCb1RqM', 'Bronze')}>
               Bronze
             </div>
-            <div className="video-cat silver">
+            <div className="video-cat silver" onClick={() => openModal('8Pvj6oFWyPw', 'Silver')}>
               Silver
             </div>
-            <div className="video-cat goldup">
+            <div className="video-cat goldup" onClick={() => openModal('f7Mrvka_PpU', 'Gold')}>
               Gold
             </div>
           </div>
@@ -66,6 +90,22 @@ const Home = () => {
           </div>
       </div>
       {/* <div onClick={goCheckIn}>Scan</div> */}
+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        className="refix cf vid"
+        contentLabel="Welcome"
+      >
+        <h3 className="claimh">BJJ Videos - {currentVidType}</h3>
+        <Button className="closebtn" onClick={closeModal}>
+          <FontAwesomeIcon icon={faClose} />
+        </Button>
+        <div className="flexholder vidholder">
+          <YoutubeEmbed embedId={currentVideo} />
+        </div>
+      </Modal>
     </div>
   );
 };

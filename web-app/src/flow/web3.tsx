@@ -101,7 +101,7 @@ export const Web3ContextProvider = ({
       'discovery.authn.endpoint': walletDiscoveryApi, // public discovery api endpoint
       'discovery.authn.include': walletDiscoveryInclude, // opt-in wallets
       '0xNonFungibleToken': addresses.NonFungibleToken,
-      '0xDojo': '0xb8564bff2e62329c',
+      '0xDojo': '0xb33318602009eaf2',
     });
 
     // if (!client) {

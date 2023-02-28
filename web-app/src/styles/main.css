@@ -719,3 +719,23 @@ a {
     height: 135px;
     width: auto;
 }
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  
+.video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.vid {
+    width: 99%;
+}
+.vidholder {
+    margin-top: 30px;
+}

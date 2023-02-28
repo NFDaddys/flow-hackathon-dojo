@@ -11,7 +11,7 @@ const NETWORKS = {
       FlowToken: '0x0ae53cb6e3f42a79',
       NonFungibleToken: '0x0ae53cb6e3f42a79',
       MetadataViews: '0x0ae53cb6e3f42a79',
-      Dojo: '0xb8564bff2e62329c',
+      Dojo: '0xb33318602009eaf2',
     },
   },
   testnet: {
@@ -24,7 +24,7 @@ const NETWORKS = {
     ],
     addresses: {
       NonFungibleToken: '0x631e88ae7f1d7c20',
-      Dojo: '0xb8564bff2e62329c',
+      Dojo: '0xb33318602009eaf2',
     },
   },
   mainnet: {

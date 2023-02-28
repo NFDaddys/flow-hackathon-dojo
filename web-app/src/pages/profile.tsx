@@ -18,7 +18,6 @@ import mintDojoNFT from '../cadence/transactions/mintDojoNFT';
 import initializeAccount from '../cadence/transactions/initializeAccount';
 import * as fcl from "@onflow/fcl";
 import { TxnStatus } from '@/utils/utils';
-import minterAuthz from '@/utils/minterAuthz';
 
 Modal.setAppElement('#__next');
 
@@ -39,6 +38,7 @@ const Profile = () => {
     const [txId, setTxId] = useState('');
     const [txStatus, setTxStatus] = useState<TxnStatus>();
   
+    
     const openModal = () => {
       setIsOpen(true);
     }
@@ -167,18 +167,6 @@ const Profile = () => {
             getUser();
         }
     }, [user, executeScript]);
-
-    useEffect(() => {
-      const singingShit = async () => {
-        console.log('in here right');
-        const steve = await fcl.account('0xb8564bff2e62329c');
-        setSignerAccount(steve)
-      }
-      singingShit();      
-  }, []);
-
-
-
     
 
     // Subscribe to tx returned from /api/signAsMinter
@@ -201,7 +189,18 @@ const Profile = () => {
     });
   };
 
-  
+  // const handleAnything = async () => {
+  //   await executeTransaction(mintDojoNFT, (arg: any, t: any) => [
+  //     arg(user.addr, t.Address),
+  //     arg(currentBadgeInfo.title, t.String),
+  //     arg(currentBadgeInfo.reward, t.String),
+  //     arg('test-Silver', t.String),
+  //   ], {
+  //     authorizations: [fcl.authz]
+  //   });
+  // };
+
+ 
   const handleClickMint = async () => {
     // console.log('signerAccount ', signerAccount);
     console.log('fcl.authz  ', fcl.authz);
@@ -216,11 +215,12 @@ const Profile = () => {
             arg(user.addr, t.Address),
             arg(currentBadgeInfo.title, t.String),
             arg(currentBadgeInfo.reward, t.String),
-            arg('test-Silver', t.String),
+            arg('https://valorpds.nfdaddys.tech/belt.png', t.String),
           ],
           proposer: fcl.authz,
           payer: fcl.authz,
-          authorizations: [fcl.authz]
+          authorizations:[fcl.authz]
+          // authorizations: [fcl.currentUser]
         });
   
         setTxId(txId);
@@ -441,6 +441,7 @@ const Profile = () => {
                   {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
                     <>
                       <div className="status-rew activer blue-but" onClick={() => handleInit()}>INIT ACOUNT</div>
+                      {/* <div className="status-rew activer blue-but" onClick={() => handleAnything()}>MINT</div> */}
                       <div className="status-rew activer blue-but" onClick={() => handleClickMint()}>MINT</div>
                       
                     </>

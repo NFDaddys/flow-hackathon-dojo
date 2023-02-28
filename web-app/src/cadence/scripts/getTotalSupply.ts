@@ -1,5 +1,5 @@
 const getTotalSupply = `
-    import Dojo from 0xb8564bff2e62329c
+    import Dojo from 0xb33318602009eaf2
 
     pub fun main(): UInt64 {
         return Dojo.totalSupply
