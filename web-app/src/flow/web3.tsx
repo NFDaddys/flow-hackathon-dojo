@@ -98,6 +98,7 @@ export const Web3ContextProvider = ({
       'flow.network': flowNetwork,
       // 'flow.network': 'testnet',
       'discovery.wallet': walletDiscovery, // use wallets on public discovery
+      'walletDiscoveryApi': 'https://fcl-discovery.onflow.org/api/testnet/authn',
       'discovery.authn.endpoint': walletDiscoveryApi, // public discovery api endpoint
       'discovery.authn.include': walletDiscoveryInclude, // opt-in wallets
       '0xNonFungibleToken': addresses.NonFungibleToken,

@@ -22,6 +22,8 @@ import {
   TwitterShareButton,
   TwitterIcon
 } from "react-share";
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti';
 
 Modal.setAppElement('#__next');
 
@@ -39,9 +41,10 @@ const Profile = () => {
 
     const [signerAccount, setSignerAccount] = useState<any>({});
     const [isMintInProgress, setIsMintInProgress] = useState<boolean>(false);
+    const [mintComplete, setMintComplete] = useState<boolean>(false);
     const [txId, setTxId] = useState('');
     const [txStatus, setTxStatus] = useState<TxnStatus>();
-  
+    const { width, height } = useWindowSize();
     
     const openModal = () => {
       setIsOpen(true);
@@ -211,32 +214,41 @@ const Profile = () => {
     console.log('user.addr ', fcl.currentUser);
     console.log('currentBadgeInfo.title ', currentBadgeInfo.title);
     console.log('currentBadgeInfo.reward ', currentBadgeInfo.reward);
-      setIsMintInProgress(true);
-      try {
-        const txId = await fcl.mutate({
-          cadence: mintDojoNFT,
-          args: (arg: any, t: any) => [
-            arg(user.addr, t.Address),
-            arg(currentBadgeInfo.title, t.String),
-            arg(currentBadgeInfo.reward, t.String),
-            arg('https://valorpds.nfdaddys.tech/belt.png', t.String),
-          ],
-          proposer: fcl.authz,
-          payer: fcl.authz,
-          authorizations:[fcl.authz]
-          // authorizations: [fcl.currentUser]
-        });
-  
-        setTxId(txId);
-        console.log('we made it through');
-      } catch (error) {
-        console.error(error);
-  
-        setIsMintInProgress(false);
-      }
-    };
+    setIsMintInProgress(true);
+    try {
+      const txId = await fcl.mutate({
+        cadence: mintDojoNFT,
+        args: (arg: any, t: any) => [
+          arg(user.addr, t.Address),
+          arg(currentBadgeInfo.title, t.String),
+          arg(currentBadgeInfo.reward, t.String),
+          arg('https://valorpds.nfdaddys.tech/belt.png', t.String),
+        ],
+        proposer: fcl.authz,
+        payer: fcl.authz,
+        authorizations:[fcl.authz]
+        // authorizations: [fcl.currentUser]
+      });
+
+      setTxId(txId);
+      setMintComplete(true);
+      console.log('we made it through');
+    } catch (error) {
+      console.error(error);
+
+      setIsMintInProgress(false);
+    }
+  };
 
   return (
+    <>
+    {mintComplete && 
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={60}
+        />
+      }
     <div className="flex-holder">
       <h1 className="title-header">Profile</h1>
    {!user.loggedIn ? 
@@ -443,7 +455,7 @@ const Profile = () => {
               {currentBadgeInfo.claimed &&
                 <div className="status-rew claimed">CLAIMED</div> 
               }
-              {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
+              {!currentBadgeInfo.claimed && earnedWhat === 'Belt' && !mintComplete &&
                 <>
                   {/* <div className="status-rew activer blue-but" onClick={() => handleInit()}>INIT ACOUNT</div> */}
                   {/* <div className="status-rew activer blue-but" onClick={() => handleAnything()}>MINT</div> */}
@@ -451,14 +463,18 @@ const Profile = () => {
                   
                 </>
               }
+              {mintComplete && 
+                <div className="success-mint">Congratulations! You minted your belt on the FLOW block chain!</div>
+              }
               <TwitterShareButton className="social-share" hashtags={['valorpds', 'bjj', 'flowdojo']} url="https://valorpdsapp.web.app/" title={'I just earned the "' + currentBadgeInfo.name + '" reward! '}>
-                <Button className="share-twitty">Share on Twitter <TwitterIcon className="twitty" size={30} round={true} /></Button>   
+                <div className="share-twitty">Share on Twitter <TwitterIcon className="twitty" size={30} round={true} /></div>   
               </TwitterShareButton>
             </div>
           </div>
         
         </Modal>
     </div>
+    </>
   );
 };
 
