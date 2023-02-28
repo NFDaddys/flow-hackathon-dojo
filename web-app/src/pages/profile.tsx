@@ -18,6 +18,10 @@ import mintDojoNFT from '../cadence/transactions/mintDojoNFT';
 import initializeAccount from '../cadence/transactions/initializeAccount';
 import * as fcl from "@onflow/fcl";
 import { TxnStatus } from '@/utils/utils';
+import {
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
 
 Modal.setAppElement('#__next');
 
@@ -318,138 +322,142 @@ const Profile = () => {
           className="refix cfs"
           contentLabel="Welcome"
         >
-              <h3 className="claimh">Modify Profile</h3>
-              <Button className="closebtn" onClick={closeModal}>
-                <FontAwesomeIcon icon={faClose} />
-              </Button>
-              <div className="containment">
-                <Form>
-                    <FormGroup>
-                        <Label for="userName">User Name:</Label>
-                        <Input type="text" name="userName" id="userName" 
-                            value={userMetaData.userName || ""}
-                            onChange={(e) => {handleChange(e)}}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="email">Email:</Label>
-                        <Input type="email" name="email" id="email" 
-                         value={userMetaData.email || ""}
-                         onChange={(e) => {handleChange(e)}}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="email">Twitter:</Label>
-                        <Input type="text" name="twitter" id="twitter" 
-                         value={userMetaData.twitter || ""}
-                         placeholder="@TwitterName"
-                         onChange={(e) => {handleChange(e)}}
-                        />
-                    </FormGroup>
-                   
-                    <FormGroup tag="fieldset">
-                      <h4 className="avatartitle">Avatar:</h4>
-                        <div className="avatar-selector">
-                            <div className="avatar-list">
-                            {Avatars.map((e: any, j) => (
-                              <FormGroup check key={j+e.type}>
-                                <Label check>
-                                <Input
-                                  name="avatar"
-                                  disabled={isDisabled(e)}
-                                  type="radio"
-                                  value={e.type}
-                                  checked={userMetaData.avatar === e.type}
-                                  onChange={(e) => {handleChange(e)}}
-                                />{' '}
-                                  {e.criteria > currentSelectedUser?.checkins.length ? 
-                                    <span><FontAwesomeIcon icon={faUnlock} /> at {e.criteria} Checkins</span>
+          <h3 className="claimh">Modify Profile</h3>
+          <Button className="closebtn" onClick={closeModal}>
+            <FontAwesomeIcon icon={faClose} />
+          </Button>
+          <div className="containment">
+            <Form>
+                <FormGroup>
+                    <Label for="userName">User Name:</Label>
+                    <Input type="text" name="userName" id="userName" 
+                        value={userMetaData.userName || ""}
+                        onChange={(e) => {handleChange(e)}}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="email">Email:</Label>
+                    <Input type="email" name="email" id="email" 
+                      value={userMetaData.email || ""}
+                      onChange={(e) => {handleChange(e)}}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="email">Twitter:</Label>
+                    <Input type="text" name="twitter" id="twitter" 
+                      value={userMetaData.twitter || ""}
+                      placeholder="@TwitterName"
+                      onChange={(e) => {handleChange(e)}}
+                    />
+                </FormGroup>
+                
+                <FormGroup tag="fieldset">
+                  <h4 className="avatartitle">Avatar:</h4>
+                    <div className="avatar-selector">
+                        <div className="avatar-list">
+                        {Avatars.map((e: any, j) => (
+                          <FormGroup check key={j+e.type}>
+                            <Label check>
+                            <Input
+                              name="avatar"
+                              disabled={isDisabled(e)}
+                              type="radio"
+                              value={e.type}
+                              checked={userMetaData.avatar === e.type}
+                              onChange={(e) => {handleChange(e)}}
+                            />{' '}
+                              {e.criteria > currentSelectedUser?.checkins.length ? 
+                                <span><FontAwesomeIcon icon={faUnlock} /> at {e.criteria} Checkins</span>
+                              :
+                                currentSelectedUser?.tests !== undefined ?
+                                  // user has test
+                                  e.tests > currentSelectedUser?.tests?.length ?
+                                    <span><FontAwesomeIcon icon={faUnlock} /> at Level {e.tests}</span>
                                   :
-                                    currentSelectedUser?.tests !== undefined ?
-                                      // user has test
-                                      e.tests > currentSelectedUser?.tests?.length ?
-                                        <span><FontAwesomeIcon icon={faUnlock} /> at Level {e.tests}</span>
-                                      :
-                                        <span>{e.type}</span>
-                                    :
-                                      e.tests > 0 ? 
-                                      <span><FontAwesomeIcon icon={faUnlock} /> at Level {e.tests}</span>
-                                      :
-                                        <span>{e.type}</span>
-                                        //user has no tests results
+                                    <span>{e.type}</span>
+                                :
+                                  e.tests > 0 ? 
+                                  <span><FontAwesomeIcon icon={faUnlock} /> at Level {e.tests}</span>
+                                  :
+                                    <span>{e.type}</span>
+                                    //user has no tests results
 
+                              
+                              
                                   
-                                  
-                                      
 
 
 
-                                  }
-                                </Label>
-                            </FormGroup>
-                            ))}                            
-                            </div>
-                            <div className="avatar-image-container">
-                                <Avatar address={user.addr} avatar={userMetaData.avatar} />
-                                <span className="preview-image">PREVIEW:</span>
-                            </div>
+                              }
+                            </Label>
+                        </FormGroup>
+                        ))}                            
                         </div>
-                    
-                    </FormGroup>
-                </Form>
-                <Button className="clicklink linker" onClick={() => saveUser()}>SAVE</Button>
-                <Button className="clicklink linker greygoose" onClick={() => cancelSave()}>CANCEL</Button>
-              </div>
-            
-            </Modal>
-            <Modal
-              isOpen={badgeModalIsOpen}
-              onAfterOpen={afterOpenModal}
-              onRequestClose={closeModal}
-              className="refix cf"
-              contentLabel="Welcome"
-            >
-              <Button className="closebtn" onClick={closeModal}>
-                <FontAwesomeIcon icon={faClose} />
-              </Button>
-              <div className="containment">
-               <div className="badge-content">
-                  <div className="imgholdy">
-                    <div className={'leader-rank newbadge newbig ' + currentBadgeInfo.icon}></div>
-                  </div>
-                  <div className="holdertarsky modslvl">
-                    {currentBadgeInfo.name}
-                  </div> 
-                  { currentBadgeInfo.level && currentBadgeInfo.level > 0 && 
-                  <div className="level-lvl">
-                    <span >Level {currentBadgeInfo.level} Reward</span>
-                  </div>
-                  } 
-                  <div className="level-desc">
-                    {currentBadgeInfo.reward}
-                  </div>
-
-                  {currentBadgeInfo.pointTotal &&
-                    <div className="holdertarsky">
-                      <span className="lab">Total Points Earned:</span>
-                      {currentBadgeInfo.pointTotal}
+                        <div className="avatar-image-container">
+                            <Avatar address={user.addr} avatar={userMetaData.avatar} />
+                            <span className="preview-image">PREVIEW:</span>
+                        </div>
                     </div>
-                  }
-                  {currentBadgeInfo.claimed &&
-                    <div className="status-rew claimed">CLAIMED</div> 
-                  }
-                  {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
-                    <>
-                      <div className="status-rew activer blue-but" onClick={() => handleInit()}>INIT ACOUNT</div>
-                      {/* <div className="status-rew activer blue-but" onClick={() => handleAnything()}>MINT</div> */}
-                      <div className="status-rew activer blue-but" onClick={() => handleClickMint()}>MINT</div>
-                      
-                    </>
-                  }
-               </div>
+                
+                </FormGroup>
+            </Form>
+            <Button className="clicklink linker" onClick={() => saveUser()}>SAVE</Button>
+            <Button className="clicklink linker greygoose" onClick={() => cancelSave()}>CANCEL</Button>
+          </div>
+        
+        </Modal>
+        
+        <Modal
+          isOpen={badgeModalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          className="refix cf"
+          contentLabel="Welcome"
+        >
+          <Button className="closebtn" onClick={closeModal}>
+            <FontAwesomeIcon icon={faClose} />
+          </Button>
+          <div className="containment">
+            <div className="badge-content">
+              <div className="imgholdy">
+                <div className={'leader-rank newbadge newbig ' + currentBadgeInfo.icon}></div>
               </div>
-            
-            </Modal>
+              <div className="holdertarsky modslvl">
+                {currentBadgeInfo.name}
+              </div> 
+              { currentBadgeInfo.level && currentBadgeInfo.level > 0 && 
+              <div className="level-lvl">
+                <span >Level {currentBadgeInfo.level} Reward</span>
+              </div>
+              } 
+              <div className="level-desc">
+                {currentBadgeInfo.reward}
+              </div>
+
+              {currentBadgeInfo.pointTotal &&
+                <div className="holdertarsky">
+                  <span className="lab">Total Points Earned:</span>
+                  {currentBadgeInfo.pointTotal}
+                </div>
+              }
+              {currentBadgeInfo.claimed &&
+                <div className="status-rew claimed">CLAIMED</div> 
+              }
+              {!currentBadgeInfo.claimed && earnedWhat === 'Belt' &&
+                <>
+                  {/* <div className="status-rew activer blue-but" onClick={() => handleInit()}>INIT ACOUNT</div> */}
+                  {/* <div className="status-rew activer blue-but" onClick={() => handleAnything()}>MINT</div> */}
+                  <div className="status-rew activer blue-but" onClick={() => handleClickMint()}>MINT</div>
+                  
+                </>
+              }
+              <TwitterShareButton className="social-share" hashtags={['valorpds', 'bjj', 'flowdojo']} url="https://valorpdsapp.web.app/" title={'I just earned the "' + currentBadgeInfo.name + '" reward! '}>
+                <Button className="share-twitty">Share on Twitter <TwitterIcon className="twitty" size={30} round={true} /></Button>   
+              </TwitterShareButton>
+            </div>
+          </div>
+        
+        </Modal>
     </div>
   );
 };

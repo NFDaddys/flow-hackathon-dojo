@@ -34,6 +34,7 @@
     "react-dom": "18.2.0",
     "react-gravatar": "^2.6.3",
     "react-modal": "^3.16.1",
+    "react-share": "^4.4.1",
     "react-toastify": "^9.1.1",
     "react-use": "^17.4.0",
     "reactstrap": "^9.1.6",

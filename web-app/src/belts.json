@@ -1,18 +1,18 @@
 [
     {
-        "name": "You’re First White Belt Stripe",
+        "name": "Your First White Belt Stripe",
         "title": "VPDS BRONZE I",
         "icon": "belt1",
         "image": "belt1",
         "level": 1,
         "criteria": 1,
-        "reward": "Congratulations, You’re FIRST Stripe on your White Belt. Claim Your NFT Stripe for your FLOW BELT",
+        "reward": "Congratulations, Your FIRST Stripe on your White Belt. Claim Your NFT Stripe for your FLOW BELT",
         "claimed": false,
         "rid": 0,
         "type": "NFT MINT"
     },
     {
-        "name": "You're Second White Belt Stripe",
+        "name": "Your Second White Belt Stripe",
         "title": "VPDS SILVER I",
         "icon": "belt2",
         "image": "White Belt Stripe 2",
@@ -24,7 +24,7 @@
         "type": "NFT Mint"
     },
       {
-        "name": "You're Third White Belt Stripe",
+        "name": "Your Third White Belt Stripe",
         "title": "VPDS GOLD I",
         "icon": "belt3",
         "image": "White Belt Stripe 3",
@@ -36,7 +36,7 @@
         "type": "NFT MINT"
     },
     {
-        "name": "You're Fourth White Belt Stripe Stripe",
+        "name": "Your Fourth White Belt Stripe Stripe",
         "title": "VPDS PLATINUM I",
         "icon": "belt4",
         "image": "White Belt Stripe 4",
@@ -54,13 +54,13 @@
         "image": "Blue Belt Stripe 1",
         "level": 5,
         "criteria": 5,
-        "reward": "Congratulations, You're FIRST Stripe on your Blue Belt Claim Your NFT Stripe for your FLOW Belt",
+        "reward": "Congratulations, Your FIRST Stripe on your Blue Belt Claim Your NFT Stripe for your FLOW Belt",
         "claimed": false,
         "rid": 4,
         "type": "NFT MINT"
     },
     {
-        "name": "You're Second Blue Belt Stripe",
+        "name": "Your Second Blue Belt Stripe",
         "title": "VPDS SILVER 2",
         "icon": "belt6",
         "image": "Blue Belt Stripe 2",
@@ -72,7 +72,7 @@
         "type": "NFT Mint"
     },
     {
-        "name": "You're Third Blue Belt Stripe",
+        "name": "Your Third Blue Belt Stripe",
         "title": "VPDS GOLD 2",
         "icon": "belt7",
         "image": "Blue Belt Stripe 3",
@@ -84,7 +84,7 @@
         "type": "NFT MINT"
     },
     {
-        "name": "You're Fourth Blue Belt Stripe",
+        "name": "Your Fourth Blue Belt Stripe",
         "title": "VPDS PLATINUM 2",
         "icon": "belt8",
         "image": "Blue Belt Stripe 4",
