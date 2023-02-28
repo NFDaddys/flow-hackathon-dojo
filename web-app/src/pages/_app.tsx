@@ -10,7 +10,6 @@ import '../styles/main.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
-  console.log(router.pathname);
 
   return (
     <Web3ContextProvider>

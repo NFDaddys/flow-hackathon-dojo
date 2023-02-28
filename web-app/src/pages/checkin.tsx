@@ -111,7 +111,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
     const prevEarnedRewards : Reward[] = currentSelectedUser.rewards !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.rewards)) : [];
     let currentRewards : Reward[] = [];   
     let currentLevel = 0;
-    console.log('is this undefined? ', currentSelectedUser.rewards);
+    
     if (currentSelectedUser.rewards && currentSelectedUser.rewards.length > 0) {
       // loop through each reward
       Rewards.forEach((item:any) => {
@@ -139,7 +139,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
       // the dont have metadata -- assuming its their first visit
       const currentLevel = 1;
       const defaultlevel: any = Rewards[0];
-      console.log('this should be a level ', defaultlevel);
+      
       currentRewards.push(defaultlevel); 
       updateUser(currentRewards, currentLevel);
       // HAWK HAWK HAWK LOOKAT THIS, MIGHT BE BUGGY
@@ -153,7 +153,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
       created: new Date()
     })
     .then((result) => {
-      console.log('we added a user')
+      console.log('added');
     });
   }
 
@@ -168,24 +168,23 @@ import useWindowSize from 'react-use/lib/useWindowSize'
       checkins: tempChecks
     })
     .then((result) => {
-      console.log('added checkin')
+      console.log('added');
     });
   }
 
   const saveTestResults = async (testNumber?: number) => {
     let tempTests : any;
     let tempTestRewards : any;
-    console.log('currentSelectedUser.testRewards ', currentSelectedUser?.testRewards);
+    
     const levelnum = testNumber !== undefined ? testNumber-1 : 0;
     tempTests = currentSelectedUser.tests !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.tests)) : [];
     tempTestRewards = currentSelectedUser.testRewards !== undefined ? JSON.parse(JSON.stringify(currentSelectedUser.testRewards)) : [];
     const nowTime = moment().format();
-    console.log('tempTestRewards ', tempTestRewards);
+    
 
     tempTests.push({date: nowTime, test: testNumber});
     tempTestRewards.push(BeltRewards[levelnum]);
-    console.log('BeltRewards[levelnum]', BeltRewards[levelnum]);
-    console.log('tempTestRewards ', tempTestRewards);
+
     updateDoc(doc(db, "members", user.addr), {
       tests: tempTests,
       testRewards: tempTestRewards

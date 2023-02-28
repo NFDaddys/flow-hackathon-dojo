@@ -37,14 +37,9 @@ const Profile = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [badgeModalIsOpen, setBadgeModalIsOpen] = React.useState(false);
     const [earnedWhat, setearnedWhat] = React.useState('Badge');
-    const beltPrice = '0.0';
-
-    const [signerAccount, setSignerAccount] = useState<any>({});
     const [isMintInProgress, setIsMintInProgress] = useState<boolean>(false);
     const [mintComplete, setMintComplete] = useState<boolean>(false);
     const [txId, setTxId] = useState('');
-    const [txStatus, setTxStatus] = useState<TxnStatus>();
-    const { width, height } = useWindowSize();
     
     const openModal = () => {
       setIsOpen(true);
@@ -79,14 +74,12 @@ const Profile = () => {
             metaData: userMetaData
           })
           .then((result) => {
-            console.log('updated user profile');
             setcurrentSelectedUser(clonedUser);
             // handle user update status
           });
           closeModal();
     }
     const cancelSave = async () => {
-        console.log('save');
         setUserMetaData(userMetaDataOriginal);
         // reset meta data
         closeModal();
@@ -186,34 +179,15 @@ const Profile = () => {
   const sendQuery = async () => {
     const res: any = await executeScript(
       getTotalSupply,
-    );
-    console.log('total supply res ', res);
+    )
   }
 
-  const handleInit = async () => {
-    await executeTransaction(initializeAccount, () => [], {
-      limit: 9999,
-    });
-  };
-
-  // const handleAnything = async () => {
-  //   await executeTransaction(mintDojoNFT, (arg: any, t: any) => [
-  //     arg(user.addr, t.Address),
-  //     arg(currentBadgeInfo.title, t.String),
-  //     arg(currentBadgeInfo.reward, t.String),
-  //     arg('test-Silver', t.String),
-  //   ], {
-  //     authorizations: [fcl.authz]
+  // const handleInit = async () => {
+  //   await executeTransaction(initializeAccount, () => [], {
+  //     limit: 9999,
   //   });
   // };
-
- 
   const handleClickMint = async () => {
-    // console.log('signerAccount ', signerAccount);
-    console.log('fcl.authz  ', fcl.authz);
-    console.log('user.addr ', fcl.currentUser);
-    console.log('currentBadgeInfo.title ', currentBadgeInfo.title);
-    console.log('currentBadgeInfo.reward ', currentBadgeInfo.reward);
     setIsMintInProgress(true);
     try {
       const txId = await fcl.mutate({
@@ -232,10 +206,7 @@ const Profile = () => {
 
       setTxId(txId);
       setMintComplete(true);
-      console.log('we made it through');
     } catch (error) {
-      console.error(error);
-
       setIsMintInProgress(false);
     }
   };
