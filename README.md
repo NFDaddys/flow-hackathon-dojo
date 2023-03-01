@@ -1,6 +1,6 @@
 This is the official repo for [NFD Dev Squad](https://nfdaddys.io/) entry into the  [`Flow Hackathon`](https://hackathon.flow.com/).
 
-Current Live Demo of Application can be found: [https://valorpds.nfdaddys.tech](https://valorpds.nfdaddys.tech/)
+Current Live Version of Application can be found: [https://valorpds.nfdaddys.tech](https://valorpds.nfdaddys.tech/)
 
 ## FLOW HACKATHON - NFD Flow Dojo
 
